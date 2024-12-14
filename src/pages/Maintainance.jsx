@@ -1,5 +1,5 @@
 import React from "react";
-import Coming from "./Comming";
+import Coming from "../components/Comming";
 
 export default function MaintainancePage() {
   return (
