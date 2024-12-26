@@ -1,145 +1,43 @@
-# EduHub
+# LMS-Frontend
 
-EduHub is a modern, fast, and efficient web application built using Vite. It aims to provide a seamless experience for developers and users alike.
+AI BASED LEARNING MANAGEMENT SYSTEM FOR KIDS:: Frontend Part
 
----
+# This is Auth (Authorization) :: Login and Signup System for both the Students & Instructor
 
-## Table of Contents
+# Complete Backend Authentication includig Email OTP Verification
 
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [Running the Development Server](#running-the-development-server)
-- [Building for Production](#building-for-production)
-- [Previewing the Production Build](#previewing-the-production-build)
-- [Contributing](#contributing)
-- [License](#license)
+# Configure your system with postgresql/any RDBMS & Django to run this app
 
----
+# Before that install and Configure the system properly
 
-## Features
+# Installation Guide::
 
-- ⚡ **Blazing Fast Development** with Vite.
-- 🌟 **Modern JavaScript Support** out of the box.
-- 🛠️ **Easy to Use** and customize for your needs.
+1. Install Python 3.12.7 for Windows x64 link- https://www.python.org/downloads/
+2. Download and configure the backend part if you want to enjoy backend validation (not mandatory) but for testing it's mandatory to have the backend part also.
+3. Create any Folder and inside that folder open VS code and clone this frontend project.
+   git clone https://github.com/CodeWithArghya/LMS-Frontend.git
 
----
+4. Install few extra libraries-> react-toastify, axios
+   npm install --save react-toastify
+   npm install react-axios
 
-## Prerequisites
+5. Download & Install, configure properly the react+vite part.
 
-Before running the project, ensure you have the following installed on your system:
+6. After that run the following command in Project Base directory
+   **\*\*** npm run dev
 
-- [Node.js](https://nodejs.org/) (Version 16 or above recommended)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) (Package manager)
+Now you can check it in your local server :: http://localhost:5173/
 
----
+# Any Problem/doubt ask me
 
-## Setup
+# Do not modify/change anything in the source code
 
-Follow these steps to set up the project on your local machine:
+# After Testing the frontend part (all auth form, functionality of student & instructor's login, signup and otp verification)
 
-1. **Clone the Repository**:
-   ```bash
-   git clone <repository-url>
-   ```
-   Replace `<repository-url>` with the GitHub repository URL.
+# Testing will be done by Bapan within 28/12/2024
 
-2. **Navigate to the Project Directory**:
-   ```bash
-   cd EduHub
-   ```
+# Test all the APIS as per instructions above
 
-3. **Install Dependencies**:
-   Using npm:
-   ```bash
-   npm install
-   ```
-   Or using yarn:
-   ```bash
-   yarn install
-   ```
+# Test both the positive response and negtive response to check either all reponse and error messages are working properly or not
 
----
-
-## Running the Development Server
-
-Start the development server to preview your app locally:
-
-Using npm:
-```bash
-npm run dev
-```
-
-Using yarn:
-```bash
-yarn dev
-```
-
-The application will be available at:
-```
-http://localhost:5173
-```
-
----
-
-## Building for Production
-
-To create an optimized production build, run:
-
-Using npm:
-```bash
-npm run build
-```
-
-Using yarn:
-```bash
-yarn build
-```
-
-The production-ready files will be generated in the `dist` directory.
-
----
-
-## Previewing the Production Build
-
-To preview the production build locally, run:
-
-Using npm:
-```bash
-npm run preview
-```
-
-Using yarn:
-```bash
-yarn preview
-```
-
-The app will be available at:
-```
-http://localhost:4173
-```
-
----
-
-## Contributing
-
-We welcome contributions to **EduHub**! 🎉
-
-- Fork the repository.
-- Create a new branch for your feature or bug fix.
-- Commit your changes with a meaningful message.
-- Open a pull request and provide details about your changes.
-
----
-
-## License
-
-This project is licensed under the [MIT License](./LICENSE).
-
----
-
-## Contact
-
-For any questions or suggestions, feel free to reach out. 🚀
-
-Happy Coding! ✨
+# save all the screenshots and share your test result in LMS Whatsapp Group.
