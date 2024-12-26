@@ -31,7 +31,7 @@ const Coming = () => {
 
   return (
     <div style={{ textAlign: "center", marginTop: "0px" }}>
-      <p style={{ fontSize: "60px" }}>{timeLeft}</p>
+      <p style={{ fontSize: "30px" }}>{timeLeft}</p>
     </div>
   );
 };

@@ -3,31 +3,26 @@ import Coming from "../components/Comming";
 
 export default function MaintainancePage() {
   return (
-    <div className="container">
-      <h1 className="text-center text-danger m-2">
-        Site is Under Maintainance
-      </h1>
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center">
+        <h1 className="text-4xl font-bold text-red-500 mb-4">
+          🚧 Site Under Maintenance 🚧
+        </h1>
+        <p className="text-lg text-gray-300 mb-6">
+          Our site is currently undergoing maintenance. <br />
+          Please try again later.
+        </p>
 
-      <h4 className="text-center text-primary">Please Try Again Later</h4>
-
-      <div className="container text-center">
-        <img
-          src="assets/img/maintainance.jpg"
-          alt="Main"
-          style={{
-            maxWidth: "100%",
-            height: "auto",
-            marginBottom: "20px",
-            margin: "auto",
-          }}
-        />
+        <h4 className="text-lg text-yellow-300 mb-4">
+          Visit this page after: <br></br>
+          <span className="text-blue-400 font-semibold">
+            <Coming />
+          </span>
+        </h4>
+        <p className="text-gray-500">
+          Thank you for your patience while we improve our services!
+        </p>
       </div>
-      <h4 className="text-center bg-dark text-warning m-2 p-2">
-        Visit this page after ::
-        <span className="text-info">
-          <Coming />
-        </span>
-      </h4>
     </div>
   );
 }
