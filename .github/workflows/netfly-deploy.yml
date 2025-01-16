@@ -1,57 +1,54 @@
+name: Deploy to AWS Amplify and Docker Hub
+
 on:
   push:
     branches:
-      - main  # Trigger the workflow when pushing to the main branch
-
-name: Deploy to Docker Hub and AWS Amplify
+      - main  # Triggers the workflow on push to the `main` branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
-    - name: Checkout code
+    # Step 1: Checkout the code
+    - name: Checkout Code
       uses: actions/checkout@v2
 
-      # Step 2: Set up Docker and build/push to Docker Hub
+    # Step 2: Configure AWS Credentials
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}   # AWS access key (GitHub Secret)
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # AWS secret key (GitHub Secret)
+        aws-region: ap-south-1   # AWS region (modify as needed)
+
+    # Step 3: Install Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16       # Adjust Node.js version as required
+
+    # Step 4: Install AWS Amplify CLI
+    - name: Install AWS Amplify CLI
+      run: npm install -g @aws-amplify/cli
+
+    # Step 5: Deploy to AWS Amplify
+    - name: Deploy to AWS Amplify
+      run: amplify publish --yes
+
+    # Step 6: Set up Docker Buildx
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Cache Docker layers
-      uses: actions/cache@v2
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-buildx-
-
+    # Step 7: Log in to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}    # Docker Hub username
-        password: ${{ secrets.DOCKER_PASSWORD }}    # Docker Hub password or access token
+        username: ${{ secrets.DOCKER_USERNAME }}    # Docker Hub username (GitHub Secret)
+        password: ${{ secrets.DOCKER_PASSWORD }}    # Docker Hub password or access token (GitHub Secret)
 
-    - name: Build and push Docker image to Docker Hub
+    # Step 8: Build and push Docker image to Docker Hub
+    - name: Build and Push Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
-        docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
-
-      # Step 3: Deploy to AWS Amplify
-    - name: Deploy to AWS Amplify
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}    # Your AWS access key ID
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # Your AWS secret access key
-        aws-region: ap-south-1  # Replace with your AWS region
-
-    - name: Amplify Deployment
-      run: |
-        npx amplify-publish \
-          --frontend ios \
-          --framework react \
-          --appId ${{ secrets.AMPLIFY_APP_ID }} \
-          --branchName main \
-          --directory dist \
-          --buildCommand "npm run build" \
-          --startCommand "npm start"
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .   # Build Docker image
+        docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}         # Push to Docker Hub
