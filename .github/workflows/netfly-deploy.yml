@@ -52,6 +52,6 @@ jobs:
       uses: netlify/actions/build@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}    # Optional, if you already have a site ID
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}    # Optional, if you already have a site IDs
         NETLIFY_CMD: 'npm run build'      # Build command for your app
         NETLIFY_DIR: 'dist'               # Directory where the build output is located (adjust if necessary)
