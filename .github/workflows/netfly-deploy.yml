@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Publish to Netlify
-      uses: netlify/actions/build@v3
+      uses: netlify/actions/build@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        # Automatically provided by GitHub
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}  # Optional if you already have a site
