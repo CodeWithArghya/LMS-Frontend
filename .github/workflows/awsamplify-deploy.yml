@@ -1,0 +1,66 @@
+name: Deploy to Docker Hub and AWS Amplify
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when pushing to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+      # Step 2: Set up Docker and build/push to Docker Hub
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}    # Docker Hub username
+        password: ${{ secrets.DOCKER_PASSWORD }}    # Docker Hub password or access token
+
+    - name: Build and push Docker image to Docker Hub
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
+        docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+
+      # Step 3: Set up Node.js and build the app for AWS Amplify
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies and build the app
+      run: |
+        npm install
+        npm run build
+
+      # Step 4: Deploy to AWS Amplify
+    - name: Deploy to AWS Amplify
+      run: |
+        # Set up AWS CLI
+        curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+
+        # Configure AWS CLI with the GitHub Secrets
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws configure set default.region us-east-1  # Set the region you are using for your Amplify app
+
+        # Deploy using Amplify CLI
+        amplify pull --appId ${{ secrets.AMPLIFY_APP_ID }} --envName prod
+        amplify publish
