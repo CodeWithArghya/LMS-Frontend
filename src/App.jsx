@@ -39,7 +39,7 @@ export default function App() {
             path="/instructor/create-courses"
             element={<CreateCourseForm />}
           />
-
+          {/**maintainance */}
           <Route path="*" element={<MaintainancePage />} />
         </Routes>
       </Layout>
