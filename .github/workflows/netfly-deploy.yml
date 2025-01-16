@@ -1,19 +1,57 @@
-on: push
-name: Publish on Netlify
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when pushing to the main branch
+
+name: Deploy to Docker Hub and Netlify
 
 jobs:
-  publish:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
     - name: Checkout code
       uses: actions/checkout@v2
+
+      # Step 2: Set up Docker and build/push to Docker Hub
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}    # Docker Hub username
+        password: ${{ secrets.DOCKER_PASSWORD }}    # Docker Hub password or access token
+
+    - name: Build and push Docker image to Docker Hub
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
+        docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+
+      # Step 3: Set up Node.js and build the app for Netlify
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies and build the app
+      run: |
+        npm install
+        npm run build
 
     - name: Publish to Netlify
       uses: netlify/actions/build@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        # Automatically provided by GitHub
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}  # Optional if you already have a site
-        NETLIFY_BASE: 'site'                             # Optional, specify base directory if needed
-        NETLIFY_CMD: 'npm run build'                     # Build command, adjust as necessary
-        NETLIFY_DIR: 'site/_build'                       # Directory to publish after build
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}    # Optional, if you already have a site ID
+        NETLIFY_CMD: 'npm run build'      # Build command for your app
+        NETLIFY_DIR: 'dist'               # Directory where the build output is located (adjust if necessary)
