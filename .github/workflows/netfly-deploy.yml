@@ -3,7 +3,7 @@ on:
     branches:
       - main  # Trigger the workflow when pushing to the main branch
 
-name: Deploy to Docker Hub and Netlify
+name: Deploy to Docker Hub and AWS Amplify
 
 jobs:
   deploy:
@@ -37,21 +37,21 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
         docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
 
-      # Step 3: Set up Node.js and build the app for Netlify
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+      # Step 3: Deploy to AWS Amplify
+    - name: Deploy to AWS Amplify
+      uses: aws-actions/configure-aws-credentials@v2
       with:
-        node-version: '16'
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}    # Your AWS access key ID
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # Your AWS secret access key
+        aws-region: ap-south-1  # Replace with your AWS region
 
-    - name: Install dependencies and build the app
+    - name: Amplify Deployment
       run: |
-        npm install
-        npm run build
-
-    - name: Publish to Netlify
-      uses: netlify/actions/build@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}    # Optional, if you already have a site IDs
-        NETLIFY_CMD: 'npm run build'      # Build command for your app
-        NETLIFY_DIR: 'dist'               # Directory where the build output is located (adjust if necessary)
+        npx amplify-publish \
+          --frontend ios \
+          --framework react \
+          --appId ${{ secrets.AMPLIFY_APP_ID }} \
+          --branchName main \
+          --directory dist \
+          --buildCommand "npm run build" \
+          --startCommand "npm start"
