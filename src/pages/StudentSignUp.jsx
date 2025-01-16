@@ -69,7 +69,7 @@ export default function StudentSignUp() {
         name="username"
         value={username}
         onChange={(event) => setUsername(event.target.value)}
-        placeholder="Enter your username"
+        placeholder="STD ******** (use prefix like this)"
       />
       <FormInput
         label="Email Address"

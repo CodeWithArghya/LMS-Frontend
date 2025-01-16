@@ -70,7 +70,7 @@ export default function InstructorSignUp() {
         name="username"
         value={username}
         onChange={(event) => setUsername(event.target.value)}
-        placeholder="Enter your username"
+        placeholder="INS ******** (use prefix like this)"
       />
       <FormInput
         label="Email Address"

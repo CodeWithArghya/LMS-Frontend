@@ -9,6 +9,9 @@ import InstructorSignUp from "./pages/InstructorSignUp";
 import OtpUser from "./pages/OtpUser";
 import Success from "./pages/Success";
 import MaintainancePage from "./pages/Maintainance";
+import StudentDashboard from "./pages/StudentDashboard";
+import InstructorDashboard from "./pages/InstructorDashboard";
+import CreateCourseForm from "./components/courses/CreateCourseForm";
 export default function App() {
   return (
     <Router>
@@ -22,6 +25,21 @@ export default function App() {
           <Route path="/instructor/signup" element={<InstructorSignUp />} />
           <Route path="/otp-verify" element={<OtpUser />} />
           <Route path="/success" element={<Success />} />
+          <Route
+            path="/student/student-dashboard"
+            element={<StudentDashboard />}
+          />
+
+          <Route
+            path="/instructor/instructor-dashboard"
+            element={<InstructorDashboard />}
+          />
+
+          <Route
+            path="/instructor/create-courses"
+            element={<CreateCourseForm />}
+          />
+
           <Route path="*" element={<MaintainancePage />} />
         </Routes>
       </Layout>
