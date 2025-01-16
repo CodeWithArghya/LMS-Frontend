@@ -1,32 +1,19 @@
-name: Deploy to Netlify
-
-on:
-  push:
-    branches:
-      - main
+on: push
+name: Publish on Netlify
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build app
-      run: npm run build
-
-    - name: Deploy to Netlify
-      uses: netlify/actions/build@master
-      with:
-        netlify_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        site_id: ${{ secrets.NETLIFY_SITE_ID }}
-        dir: ./dist
+    - name: Publish to Netlify
+      uses: netlify/actions/build@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        # Automatically provided by GitHub
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}  # Optional if you already have a site
+        NETLIFY_BASE: 'site'                             # Optional, specify base directory if needed
+        NETLIFY_CMD: 'npm run build'                     # Build command, adjust as necessary
+        NETLIFY_DIR: 'site/_build'                       # Directory to publish after build
