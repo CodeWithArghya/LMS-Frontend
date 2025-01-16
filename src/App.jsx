@@ -40,7 +40,7 @@ export default function App() {
             element={<CreateCourseForm />}
           />
 
-          <Route path="server" element={<MaintainancePage />} />
+          <Route path="serverdown" element={<MaintainancePage />} />
         </Routes>
       </Layout>
     </Router>
