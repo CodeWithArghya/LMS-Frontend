@@ -52,14 +52,16 @@ jobs:
     - name: Deploy to AWS Amplify
       run: |
         # Set up AWS CLI
-        curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        aws --version
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip awscliv2.zip
-        sudo ./aws/install
+        sudo ./aws/install --update
+        aws --version
 
         # Configure AWS CLI with the GitHub Secrets
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws configure set default.region us-east-1  # Set the region you are using for your Amplify app
+        aws configure set default.region ap-south-1  # Set the region you are using for your Amplify app
 
         # Deploy using Amplify CLI
         amplify pull --appId ${{ secrets.AMPLIFY_APP_ID }} --envName prod
