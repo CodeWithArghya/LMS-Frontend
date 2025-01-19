@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BookOpen, Video } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/dashboard/instructor/Sidebar";

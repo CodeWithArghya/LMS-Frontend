@@ -1,25 +1,35 @@
-import { Home, BookOpen, CheckSquare, Bell, LogOut, Menu, X } from 'lucide-react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {
+  Home,
+  BookOpen,
+  CheckSquare,
+  Bell,
+  LogOut,
+  Menu,
+  X,
+} from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const menuItems = [
-    { icon: Home, label: 'Dashboard', path: '/student/dashboard' },
-    { icon: BookOpen, label: 'Courses', path: '/student/courses' },
-    { icon: Bell, label: 'Notices', path: '/student/notices' },
-    { icon: CheckSquare, label: 'Todo', path: '/student/todo' }
+    { icon: Home, label: "Dashboard", path: "/student/student-dashboard" },
+    { icon: BookOpen, label: "Courses", path: "/student/courses" },
+    { icon: Bell, label: "Notices", path: "/student/notices" },
+    { icon: CheckSquare, label: "Todo", path: "/student/todo" },
   ];
 
   return (
     <>
-      <div className={`
+      <div
+        className={`
         fixed md:static inset-y-0 left-0 z-30 w-64 bg-background-secondary transform transition-transform duration-300 ease-in-out mt-16
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+        ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
         md:translate-x-0
-      `}>
+      `}
+      >
         <button
           className="md:hidden absolute -right-12 top-2 bg-violet-700 p-2 rounded-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -33,9 +43,9 @@ export default function Sidebar() {
 
         <div className="p-4">
           <div className="flex items-center space-x-4 mb-8">
-            <img 
-              src="https://htmlcolorcodes.com/assets/images/colors/violet-color-solid-background-1920x1080.png" 
-              alt="Profile" 
+            <img
+              src="https://htmlcolorcodes.com/assets/images/colors/violet-color-solid-background-1920x1080.png"
+              alt="Profile"
               className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
             />
             <div>
@@ -59,10 +69,10 @@ export default function Sidebar() {
               </button>
             ))}
 
-            <button 
+            <button
               className="w-full flex items-center space-x-3 px-4 py-3 text-violet-200 hover:bg-violet-900 transition-colors rounded-lg mt-8"
               onClick={() => {
-                navigate('/');
+                navigate("/");
                 setIsMobileMenuOpen(false);
               }}
             >
@@ -74,7 +84,7 @@ export default function Sidebar() {
       </div>
 
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden mt-16"
           onClick={() => setIsMobileMenuOpen(false)}
         />
