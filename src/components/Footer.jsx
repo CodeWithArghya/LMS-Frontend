@@ -96,7 +96,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm md:text-base">
-          <p>&copy; {new Date().getFullYear()} EduHub. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Learn With Fun. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>
