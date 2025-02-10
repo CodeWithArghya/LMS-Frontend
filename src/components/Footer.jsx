@@ -91,7 +91,7 @@ export default function Footer() {
             <p className="text-sm md:text-base mb-2">
               Email: eduhublmsofficials@gmail.com
             </p>
-            <p className="text-sm md:text-base">Phone: (XX) XXXXXXX </p>
+            <p className="text-sm md:text-base">Phone: (+91) 6295717932 </p>
           </div>
         </div>
 
