@@ -13,6 +13,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import CreateCourseForm from "./components/courses/CreateCourseForm";
 import CoursesPage from "./pages/student/CoursesPage";
+import CourseDetails from "./pages/CourseDetails";
 export default function App() {
   return (
     <Router>
@@ -35,6 +36,10 @@ export default function App() {
           <Route
             path="/instructor/instructor-dashboard"
             element={<InstructorDashboard />}
+          />
+          <Route
+            path="/student/course-details/:id"
+            element={<CourseDetails />}
           />
 
           <Route

@@ -30,7 +30,7 @@ export default function StudentSignIn() {
         }
       );
       localStorage.setItem("auth", JSON.stringify(response.data));
-      navigate("/dash");
+      navigate("/student/student-dashboard");
     } catch (error) {
       if (error.response && error.response.data) {
         const errorMessage =

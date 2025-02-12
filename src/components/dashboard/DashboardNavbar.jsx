@@ -14,7 +14,10 @@ export default function DashboardNavbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  const handleLogout = async () => {
+    localStorage.removeItem("auth");
+    window.location.href = "/"; // Redirect to home
+  };
   return (
     <nav
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
@@ -39,7 +42,10 @@ export default function DashboardNavbar() {
             >
               Home
             </Link>
-            <button className="text-white hover:text-purple-200 transition-colors flex items-center space-x-2">
+            <button
+              onClick={handleLogout}
+              className="text-white hover:text-purple-200 transition-colors flex items-center space-x-2"
+            >
               <LogOut className="w-4 h-4" />
               <span>Logout</span>
             </button>
