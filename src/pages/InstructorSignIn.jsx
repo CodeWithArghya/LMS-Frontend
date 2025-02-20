@@ -30,7 +30,7 @@ export default function InstructorSignIn() {
         }
       );
       localStorage.setItem("auth", JSON.stringify(response.data));
-      navigate("/user/instructor/dashbord");
+      navigate("/instructor/instructor-dashboard");
     } catch (error) {
       if (error.response && error.response.data) {
         const errorMessage =

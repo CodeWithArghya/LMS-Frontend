@@ -14,6 +14,9 @@ import InstructorDashboard from "./pages/InstructorDashboard";
 import CreateCourseForm from "./components/courses/CreateCourseForm";
 import CoursesPage from "./pages/student/CoursesPage";
 import CourseDetails from "./pages/CourseDetails";
+import MyCoursesPage from "./pages/instructor/CoursesPage";
+import InstructorCourseDetails from "./pages/InstructorCourseData";
+import InstructorCourseEdit from "./pages/InstructorCourseEdit";
 export default function App() {
   return (
     <Router>
@@ -27,6 +30,7 @@ export default function App() {
           <Route path="/instructor/signup" element={<InstructorSignUp />} />
           <Route path="/otp-verify" element={<OtpUser />} />
           <Route path="/student/courses" element={<CoursesPage />} />
+          <Route path="/instructor/courses" element={<MyCoursesPage />} />
           <Route path="/success" element={<Success />} />
           <Route
             path="/student/student-dashboard"
@@ -41,7 +45,14 @@ export default function App() {
             path="/student/course-details/:id"
             element={<CourseDetails />}
           />
-
+          <Route
+            path="/instructor/course-editform/:id"
+            element={<InstructorCourseEdit />}
+          />
+          <Route
+            path="/instructor/course-details/:id"
+            element={<InstructorCourseDetails />}
+          />
           <Route
             path="/instructor/create-courses"
             element={<CreateCourseForm />}

@@ -10,6 +10,12 @@ import DashboardNavbar from "../components/dashboard/DashboardNavbar";
 export default function InstructorDashboard() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("auth");
+    if (!token) {
+      navigate("/instructor/signin"); // Redirect to login if token is missing
+    }
+  }, []);
   const quickActions = [
     {
       icon: BookOpen,

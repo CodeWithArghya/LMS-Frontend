@@ -1,5 +1,11 @@
 # LMS-Frontend
 
+# default password for testing
+
+# INSArghya Demo
+
+# STDArghya Arghya@1234
+
 AI BASED LEARNING MANAGEMENT SYSTEM FOR KIDS:: Frontend Part
 
 # This is Auth (Authorization) :: Login and Signup System for both the Students & Instructor

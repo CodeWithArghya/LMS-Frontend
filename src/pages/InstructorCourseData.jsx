@@ -1,11 +1,11 @@
 import DashboardNavbar from "../components/dashboard/DashboardNavbar";
-import Sidebar from "../components/dashboard/student/Sidebar";
+import Sidebar from "../components/dashboard/instructor/Sidebar";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BookOpen, Download, Video } from "lucide-react";
 import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
-export default function CourseDetails() {
+export default function InstructorCourseDetails() {
   const { id } = useParams();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ export default function CourseDetails() {
     const fetchCourseDetails = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/coursedetails/${id}/`
+          `http://127.0.0.1:8000/api/inscoursedetails/${id}/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch course details");
@@ -104,7 +104,7 @@ export default function CourseDetails() {
               </h1>
               <p className="text-gray-400 mb-2">{course.subject_name}</p>
               <p className="text-gray-400 mb-4">
-                {course.for_class} | {course.duration} Hours
+                {course.for_class} | {course.duration} hours
               </p>
               <p className="text-gray-400 mb-4">{course.description}</p>
 
@@ -119,6 +119,9 @@ export default function CourseDetails() {
                       {course.teacher_name}
                     </p>
                   </div>
+                </div>
+                <div className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                  {course.current_status}
                 </div>
               </div>
             </div>
@@ -137,41 +140,55 @@ export default function CourseDetails() {
             </div>
 
             {/* Thumbnail */}
+            {course.coursethubmnail && (
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h2 className="text-2xl font-semibold text-white mb-4">
+                  Course Thumbnail
+                </h2>
+                <img
+                  src={course.coursethubmnail}
+                  alt="Course Thumbnail"
+                  className="rounded-lg w-full max-h-96 object-cover"
+                />
+              </div>
+            )}
+
+            {/* Download Section */}
             <div className="bg-gray-800 p-6 rounded-lg">
               <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
                 <Download className="w-6 h-6 text-purple-400" /> Course Notes &
                 References/Assignments
               </h2>
               <div className="space-y-4">
-                {/* Class Notes PDF Viewer */}
                 {course.classnote ? (
-                  <div className="bg-gray-700 p-4 rounded-lg">
-                    <span className="text-gray-300 block mb-2">
-                      Course Notes
-                    </span>
-                    <iframe
-                      src={course.classnote}
-                      width="100%"
-                      height="500px"
-                      className="rounded-lg"
-                    ></iframe>
+                  <div className="flex items-center justify-between bg-gray-700 p-4 rounded-lg">
+                    <span className="text-gray-300">Course Notes</span>
+                    <a
+                      href={course.classnote}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-green-500 px-4 py-2 rounded-lg text-white"
+                    >
+                      View
+                    </a>
                   </div>
                 ) : (
                   <p className="text-gray-400">No class notes available.</p>
                 )}
 
-                {/* Course Assessment PDF Viewer */}
                 {course.courseassessment ? (
-                  <div className="bg-gray-700 p-4 rounded-lg">
-                    <span className="text-gray-300 block mb-2">
-                      Course Assignment
+                  <div className="flex items-center justify-between bg-gray-700 p-4 rounded-lg">
+                    <span className="text-gray-300">
+                      Download Course Assignment
                     </span>
-                    <iframe
-                      src={course.courseassessment}
-                      width="100%"
-                      height="500px"
-                      className="rounded-lg"
-                    ></iframe>
+                    <a
+                      href={course.courseassessment}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-red-500 px-4 py-2 rounded-lg text-white"
+                    >
+                      Download
+                    </a>
                   </div>
                 ) : (
                   <p className="text-red-500 flex items-center justify-between bg-gray-700 p-4 rounded-lg">
