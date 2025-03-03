@@ -69,14 +69,14 @@ export default function Sidebar() {
     },
     { icon: BookOpen, label: "My Courses", path: "/instructor/courses" },
     {
-      icon: Bell,
-      label: "My Sechduled Classes",
-      path: "/instructor/my-classes",
+      icon: CheckSquare,
+      label: "LWF Assessment",
+      path: "/instructor/create-learnwithfun-assessment",
     },
     {
       icon: CheckSquare,
-      label: "Quiz/Assessment",
-      path: "/instructor/assessment",
+      label: "Quiz",
+      path: "/instructor/create-quize",
     },
   ];
 

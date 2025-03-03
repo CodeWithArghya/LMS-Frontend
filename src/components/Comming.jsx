@@ -4,7 +4,7 @@ const Coming = () => {
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
-    const countDownDate = new Date("Mar 10, 2025 10:00:00").getTime();
+    const countDownDate = new Date("Mar 30, 2025 10:00:00").getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();

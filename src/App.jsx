@@ -17,6 +17,9 @@ import CourseDetails from "./pages/CourseDetails";
 import MyCoursesPage from "./pages/instructor/CoursesPage";
 import InstructorCourseDetails from "./pages/InstructorCourseData";
 import InstructorCourseEdit from "./pages/InstructorCourseEdit";
+import CreateLWFAssessment from "./components/courses/CreateLWFAssessment";
+
+import DrawingAndQuestionPage from "./components/DrawingAndQuestionPage";
 export default function App() {
   return (
     <Router>
@@ -56,6 +59,14 @@ export default function App() {
           <Route
             path="/instructor/create-courses"
             element={<CreateCourseForm />}
+          />
+          <Route
+            path="/instructor/create-learnwithfun-assessment"
+            element={<CreateLWFAssessment />}
+          />
+          <Route
+            path="/student/learn-with-fun"
+            element={<DrawingAndQuestionPage />}
           />
           {/**maintainance */}
           <Route path="*" element={<MaintainancePage />} />

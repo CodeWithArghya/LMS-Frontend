@@ -64,8 +64,8 @@ export default function Sidebar() {
   const menuItems = [
     { icon: Home, label: "Dashboard", path: "/student/student-dashboard" },
     { icon: BookOpen, label: "Courses", path: "/student/courses" },
-    { icon: Bell, label: "Notices", path: "/student/notices" },
-    { icon: CheckSquare, label: "Quiz/Assessment", path: "/student/todo" },
+    { icon: Bell, label: "Learn With Fun", path: "/student/learn-with-fun" },
+    { icon: CheckSquare, label: "Quizes", path: "/student/quize" },
   ];
 
   return (
