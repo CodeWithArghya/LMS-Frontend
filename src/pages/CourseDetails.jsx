@@ -21,7 +21,6 @@ export default function CourseDetails() {
           throw new Error("Failed to fetch course details");
         }
         const data = await response.json();
-        console.log("Fetched Course Data:", data); // Debugging log
 
         if (data.course) {
           setCourse(data.course); // Correct key from API response

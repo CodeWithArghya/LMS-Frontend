@@ -65,7 +65,11 @@ export default function Sidebar() {
     { icon: Home, label: "Dashboard", path: "/student/student-dashboard" },
     { icon: BookOpen, label: "Courses", path: "/student/courses" },
     { icon: Bell, label: "Learn With Fun", path: "/student/learn-with-fun" },
-    { icon: CheckSquare, label: "Quizes", path: "/student/quize" },
+    {
+      icon: CheckSquare,
+      label: "Assessments",
+      path: "/student/view-assessments",
+    },
   ];
 
   return (

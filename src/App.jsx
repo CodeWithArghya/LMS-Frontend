@@ -18,8 +18,12 @@ import MyCoursesPage from "./pages/instructor/CoursesPage";
 import InstructorCourseDetails from "./pages/InstructorCourseData";
 import InstructorCourseEdit from "./pages/InstructorCourseEdit";
 import CreateLWFAssessment from "./components/courses/CreateLWFAssessment";
-
+import AssignmentTabs from "./pages/instructor/AssessmentPage";
 import DrawingAndQuestionPage from "./components/DrawingAndQuestionPage";
+import AssessmentDisplayPage from "./pages/student/AssessmentDisplayPage";
+import AssignmentSubmission from "./pages/student/StudentAssessmentSubmission";
+import MyAssessmentALL from "./pages/instructor/AssessmentView";
+import InstructorAssessmentResultCard from "./pages/instructor/AssessmentResult";
 export default function App() {
   return (
     <Router>
@@ -45,8 +49,17 @@ export default function App() {
             element={<InstructorDashboard />}
           />
           <Route
+            path="/student/submit-assessment/:id"
+            element={<AssignmentSubmission />}
+          />
+          <Route
             path="/student/course-details/:id"
             element={<CourseDetails />}
+          />
+
+          <Route
+            path="/instructor/view-assessment-submission"
+            element={<InstructorAssessmentResultCard />}
           />
           <Route
             path="/instructor/course-editform/:id"
@@ -61,12 +74,26 @@ export default function App() {
             element={<CreateCourseForm />}
           />
           <Route
+            path="/instructor/uploaded-assessments"
+            element={<MyAssessmentALL />}
+          />
+          <Route
             path="/instructor/create-learnwithfun-assessment"
             element={<CreateLWFAssessment />}
           />
           <Route
             path="/student/learn-with-fun"
             element={<DrawingAndQuestionPage />}
+          />
+
+          <Route
+            path="/instructor/assessments-management"
+            element={<AssignmentTabs />}
+          />
+
+          <Route
+            path="/student/view-assessments"
+            element={<AssessmentDisplayPage />}
           />
           {/**maintainance */}
           <Route path="*" element={<MaintainancePage />} />

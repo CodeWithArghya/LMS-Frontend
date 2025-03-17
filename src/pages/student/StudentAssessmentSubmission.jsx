@@ -2,30 +2,54 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function AssignmentTabs() {
+import { useParams } from "react-router-dom";
+export default function AssignmentSubmission() {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("auth");
     if (!token) {
-      navigate("/instructor/signin");
+      navigate("/student/signin");
     }
   }, [navigate]);
 
   const [uploadedBy, setUploadedBy] = useState("");
 
   const [formData, setFormData] = useState({
-    topic: "",
-    subject: "",
-    for_class: "",
-    description: "",
-    deadline: null,
-    content: null,
-    created_at: null,
-    uploaded_by: "",
+    answer_file: null,
+    submitted_at: null,
   });
+  const { id } = useParams();
+  const [assessment, setAssessment] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/assessmentdetails/${id}/`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch assessment details");
+        }
+        const data = await response.json();
+
+        if (data.assessment) {
+          setAssessment(data.assessment); // Correct key from API response
+        } else {
+          throw new Error("No assessment found");
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourseDetails();
+  }, [id]);
   useEffect(() => {
     const authData = localStorage.getItem("auth");
     if (!authData) {
@@ -43,7 +67,7 @@ export default function AssignmentTabs() {
     }
 
     axios
-      .get("http://127.0.0.1:8000/auth/instructor/profile/", {
+      .get("http://127.0.0.1:8000/auth/student/profile/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -90,7 +114,7 @@ export default function AssignmentTabs() {
       }
 
       await axios.post(
-        "http://127.0.0.1:8000/api/instructor/create-assignment/",
+        `http://127.0.0.1:8000/api/student/assignments/${id}/submit/`,
         formDataToSend,
         {
           headers: {
@@ -100,10 +124,10 @@ export default function AssignmentTabs() {
         }
       );
 
-      alert("Assessment Created Successfully!");
-      navigate("/instructor/instructor-dashboard/");
+      alert("Assessment Submitted Successfully!");
+      navigate("/student/student-dashboard/");
     } catch (error) {
-      alert("Error creating Assessment:", error.response?.data || error);
+      alert("Error Submitting Assessment:", error.response?.data || error);
     } finally {
       setLoadingSubmit(false);
     }
@@ -114,66 +138,18 @@ export default function AssignmentTabs() {
       <div className="max-w-3xl mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-lg">
         <form onSubmit={handleSubmit} className="space-y-4">
           <h2 className="text-2xl font-bold text-center text-violet-400 mb-6">
-            Create Assessment for others than pre/primary students
+            Submit Assessment
           </h2>
-          <label className="block">Topic Name</label>
-          <input
-            type="text"
-            name="topic"
-            value={formData.topic}
-            onChange={handleChange}
-            placeholder="Write a Topic"
-            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-            required
-          />
-          <label className="block">Subject Name</label>
-          <input
-            type="text"
-            name="subject"
-            value={formData.subject}
-            onChange={handleChange}
-            placeholder="Write Subject Name"
-            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-            required
-          />
-          <label className="block">For Which Class</label>
-          <input
-            type="text"
-            name="for_class"
-            value={formData.for_class}
-            onChange={handleChange}
-            placeholder="1,2,3 Write the class"
-            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-            required
-          />
-          <label className="block">Provide some Instructions:</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Instruction for Students (What they have to do)"
-            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-            required
-          />
-          <label className="block">Submission Deadline:</label>
-          <input
-            type="date"
-            name="deadline"
-            value={formData.deadline}
-            onChange={handleChange}
-            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-            required
-          />
 
           <label className="block">
-            Upload Question of Assignment{" "}
+            Upload Answer of Assignment{" "}
             <span className="text-red-500">
               ***(JPEG/JPG/PDF/WORD within 1MB)
             </span>
           </label>
           <input
             type="file"
-            name="content"
+            name="answer_file"
             onChange={handleFileChange}
             className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
             required
@@ -184,16 +160,14 @@ export default function AssignmentTabs() {
             disabled={loadingSubmit}
             className="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-lg"
           >
-            {loadingSubmit ? "Creating, Please wait..." : "Create Assignment"}
+            {loadingSubmit ? "Submitting, Please wait..." : "Submit Assignment"}
           </button>
         </form>
         <hr></hr>
 
         <br></br>
         <button
-          onClick={() =>
-            (window.location.href = "/instructor/instructor-dashboard")
-          }
+          onClick={() => (window.location.href = "/student/student-dashboard")}
           className="w-full bg-red-600 hover:bg-violet-700 text-white font-bold py-3 rounded-lg"
         >
           Back to Dashboard

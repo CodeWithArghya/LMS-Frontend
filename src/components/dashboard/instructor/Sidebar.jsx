@@ -68,6 +68,7 @@ export default function Sidebar() {
       path: "/instructor/instructor-dashboard",
     },
     { icon: BookOpen, label: "My Courses", path: "/instructor/courses" },
+
     {
       icon: CheckSquare,
       label: "LWF Assessment",
@@ -75,8 +76,18 @@ export default function Sidebar() {
     },
     {
       icon: CheckSquare,
-      label: "Quiz",
-      path: "/instructor/create-quize",
+      label: "Assessment Create",
+      path: "/instructor/assessments-management",
+    },
+    {
+      icon: BookOpen,
+      label: "My Assessments",
+      path: "/instructor/uploaded-assessments",
+    },
+    {
+      icon: CheckSquare,
+      label: "View Submission",
+      path: "/instructor/view-assessment-submission",
     },
   ];
 
