@@ -6,22 +6,22 @@ import { useNavigate, Link } from "react-router-dom";
 import Form from "../components/forms/Form";
 import FormInput from "../components/forms/FormInput";
 
-export default function StudentSignIn() {
+export default function InstructorPasswordReset() {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
       username: username,
-      password: password,
+      email: email,
     };
 
     try {
       // Make API call
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/student/login/",
+        "http://127.0.0.1:8000/auth/student/password-reset/",
         data,
         {
           headers: {
@@ -29,8 +29,8 @@ export default function StudentSignIn() {
           },
         }
       );
-      localStorage.setItem("auth", JSON.stringify(response.data));
-      navigate("/student/student-dashboard");
+      alert("Password has been Sent to your email");
+      navigate("/instructor/signin");
     } catch (error) {
       if (error.response && error.response.data) {
         const errorMessage =
@@ -47,10 +47,10 @@ export default function StudentSignIn() {
   return (
     <>
       <Form
-        title="Student Sign In"
-        buttonText="Sign In"
-        linkText="Don't have an account?"
-        linkTo="/student/signup"
+        title="Instructor Password Recovery"
+        buttonText="Reset Password"
+        linkText="Already have an account?"
+        linkTo="/instructor/signin"
         onSubmit={handleSubmit}
       >
         <FormInput
@@ -60,25 +60,18 @@ export default function StudentSignIn() {
           name="username"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
-          placeholder="Enter Your Username"
+          placeholder="Enter Your Registered Username e.g- INS... "
         />
         <FormInput
-          label="Password"
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="Enter your password"
+          label="Email Id"
+          type="email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="Enter your registered email-id"
         />
-        <div className="text-right mt-2">
-          <Link
-            to="/student/forgot-password"
-            className="text-blue-600 hover:underline"
-          >
-            Forgot Password?
-          </Link>
-        </div>
+
         <ToastContainer />
       </Form>
     </>

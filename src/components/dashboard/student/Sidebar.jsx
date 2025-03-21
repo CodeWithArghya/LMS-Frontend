@@ -2,9 +2,10 @@ import {
   Home,
   BookOpen,
   CheckSquare,
-  Bell,
+  GraduationCap,
   LogOut,
   Menu,
+  KeyRound,
   X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -64,7 +65,16 @@ export default function Sidebar() {
   const menuItems = [
     { icon: Home, label: "Dashboard", path: "/student/student-dashboard" },
     { icon: BookOpen, label: "Courses", path: "/student/courses" },
-    { icon: Bell, label: "Learn With Fun", path: "/student/learn-with-fun" },
+    {
+      icon: GraduationCap,
+      label: "Learn With Fun",
+      path: "/student/learn-with-fun",
+    },
+    {
+      icon: KeyRound,
+      label: "Change Password",
+      path: "/student/change-password",
+    },
     {
       icon: CheckSquare,
       label: "Assessments",

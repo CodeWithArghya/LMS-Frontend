@@ -3,6 +3,9 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import GetStarted from "./pages/GetStarted";
 import StudentSignIn from "./pages/StudentSignIn";
+import StudentPasswordReset from "./pages/StudentPassword";
+import InstrucotrPasswordChange from "./pages/instructor/PasswordChangeI";
+import InstructorPasswordReset from "./pages/InstructorPassword";
 import InstructorSignIn from "./pages/InstructorSignIn";
 import StudentSignUp from "./pages/StudentSignUp";
 import InstructorSignUp from "./pages/InstructorSignUp";
@@ -24,6 +27,7 @@ import AssessmentDisplayPage from "./pages/student/AssessmentDisplayPage";
 import AssignmentSubmission from "./pages/student/StudentAssessmentSubmission";
 import MyAssessmentALL from "./pages/instructor/AssessmentView";
 import InstructorAssessmentResultCard from "./pages/instructor/AssessmentResult";
+import StudentPasswordChange from "./pages/student/PasswordChangeS";
 export default function App() {
   return (
     <Router>
@@ -56,7 +60,14 @@ export default function App() {
             path="/student/course-details/:id"
             element={<CourseDetails />}
           />
-
+          <Route
+            path="/student/forgot-password"
+            element={<StudentPasswordReset />}
+          />
+          <Route
+            path="/instructor/forgot-password"
+            element={<InstructorPasswordReset />}
+          />
           <Route
             path="/instructor/view-assessment-submission"
             element={<InstructorAssessmentResultCard />}
@@ -76,6 +87,14 @@ export default function App() {
           <Route
             path="/instructor/uploaded-assessments"
             element={<MyAssessmentALL />}
+          />
+          <Route
+            path="/student/change-password"
+            element={<StudentPasswordChange />}
+          />
+          <Route
+            path="/instructor/change-password"
+            element={<InstrucotrPasswordChange />}
           />
           <Route
             path="/instructor/create-learnwithfun-assessment"

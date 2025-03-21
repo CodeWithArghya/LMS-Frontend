@@ -3,9 +3,13 @@ import {
   BookOpen,
   CheckSquare,
   Bell,
+  PenTool,
   LogOut,
   Menu,
   X,
+  PencilIcon,
+  GamepadIcon,
+  KeyIcon,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -70,12 +74,12 @@ export default function Sidebar() {
     { icon: BookOpen, label: "My Courses", path: "/instructor/courses" },
 
     {
-      icon: CheckSquare,
+      icon: GamepadIcon,
       label: "LWF Assessment",
       path: "/instructor/create-learnwithfun-assessment",
     },
     {
-      icon: CheckSquare,
+      icon: PencilIcon,
       label: "Assessment Create",
       path: "/instructor/assessments-management",
     },
@@ -88,6 +92,11 @@ export default function Sidebar() {
       icon: CheckSquare,
       label: "View Submission",
       path: "/instructor/view-assessment-submission",
+    },
+    {
+      icon: KeyIcon,
+      label: "Change Password",
+      path: "/instructor/change-password",
     },
   ];
 

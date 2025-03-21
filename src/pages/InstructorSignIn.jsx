@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Form from "../components/forms/Form";
 import FormInput from "../components/forms/FormInput";
 
@@ -70,6 +70,14 @@ export default function InstructorSignIn() {
         onChange={(event) => setPassword(event.target.value)}
         placeholder="Enter your password"
       />
+      <div className="text-right mt-2">
+        <Link
+          to="/instructor/forgot-password"
+          className="text-blue-600 hover:underline"
+        >
+          Forgot Password?
+        </Link>
+      </div>
       <ToastContainer />
     </Form>
   );
