@@ -28,6 +28,8 @@ import AssignmentSubmission from "./pages/student/StudentAssessmentSubmission";
 import MyAssessmentALL from "./pages/instructor/AssessmentView";
 import InstructorAssessmentResultCard from "./pages/instructor/AssessmentResult";
 import StudentPasswordChange from "./pages/student/PasswordChangeS";
+import StudentReviewForm from "./components/courses/StudentReview";
+import TeacherReviewForm from "./pages/instructor/InstructorReview";
 export default function App() {
   return (
     <Router>
@@ -83,6 +85,14 @@ export default function App() {
           <Route
             path="/instructor/create-courses"
             element={<CreateCourseForm />}
+          />
+          <Route
+            path="/default/user/common-feedback-form"
+            element={<StudentReviewForm />}
+          />
+          <Route
+            path="/instructor/feedback-form"
+            element={<TeacherReviewForm />}
           />
           <Route
             path="/instructor/uploaded-assessments"

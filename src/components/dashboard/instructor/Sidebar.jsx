@@ -10,6 +10,7 @@ import {
   PencilIcon,
   GamepadIcon,
   KeyIcon,
+  MessageCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -97,6 +98,11 @@ export default function Sidebar() {
       icon: KeyIcon,
       label: "Change Password",
       path: "/instructor/change-password",
+    },
+    {
+      icon: MessageCircle,
+      label: "Review/Feedback",
+      path: "/instructor/feedback-form",
     },
   ];
 

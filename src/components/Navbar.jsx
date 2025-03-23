@@ -55,12 +55,12 @@ export default function Navbar() {
             >
               Goals
             </button>
-            <button
-              onClick={() => scrollToSection("feedback")}
+            <Link
+              to="/default/user/common-feedback-form"
               className="text-white hover:text-purple-200 transition-colors"
             >
               Feedback
-            </button>
+            </Link>
             <Link
               to="/get-started"
               className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg transition-colors"
