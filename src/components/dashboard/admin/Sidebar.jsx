@@ -11,6 +11,9 @@ import {
   GamepadIcon,
   KeyIcon,
   MessageCircle,
+  PenIcon,
+  User2Icon,
+  UserCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +31,7 @@ export default function Sidebar() {
       const authData = localStorage.getItem("auth");
 
       if (!authData) {
-        window.location.href = "/instructor/signin";
+        window.location.href = "/pages/admin/admin-login";
         return;
       }
 
@@ -36,12 +39,12 @@ export default function Sidebar() {
         const { access_token } = JSON.parse(authData); // Extract access_token
 
         if (!access_token) {
-          window.location.href = "/instructor/signin";
+          window.location.href = "/pages/admin/admin-login";
           return;
         }
 
         const response = await axios.get(
-          "http://127.0.0.1:8000/auth/instructor/profile/",
+          "http://127.0.0.1:8000/auth/admin/profile/",
           {
             headers: {
               Authorization: `Bearer ${access_token}`,
@@ -49,11 +52,11 @@ export default function Sidebar() {
           }
         );
 
-        setFirstName(response.data.first_name || "Instructor"); // Set first name
+        setFirstName(response.data.first_name || "Administration"); // Set first name
         setLastName(response.data.last_name || "");
       } catch (err) {
         console.error("Failed to fetch user details:", err);
-        setFirstName("Instructor"); // Fallback if request fails
+        setFirstName("Administration"); // Fallback if request fails
       }
     };
 
@@ -70,39 +73,29 @@ export default function Sidebar() {
     {
       icon: Home,
       label: "Dashboard",
-      path: "/instructor/instructor-dashboard",
+      path: "",
     },
-    { icon: BookOpen, label: "My Courses", path: "/instructor/courses" },
+    {
+      icon: PenIcon,
+      label: "Manage Courses ",
+      path: "/pages/admin/manage-courses",
+    },
 
     {
-      icon: GamepadIcon,
-      label: "LWF Assessment",
-      path: "/instructor/create-learnwithfun-assessment",
+      icon: User2Icon,
+      label: "View Students",
+      path: "/pages/admin/view-students",
     },
     {
-      icon: PencilIcon,
-      label: "Assessment Create",
-      path: "/instructor/assessments-management",
+      icon: UserCircle,
+      label: "View Instructors",
+      path: "/pages/admin/view-instructors",
     },
-    {
-      icon: BookOpen,
-      label: "My Assessments",
-      path: "/instructor/uploaded-assessments",
-    },
-    {
-      icon: CheckSquare,
-      label: "View Submission",
-      path: "/instructor/view-assessment-submission",
-    },
-    {
-      icon: KeyIcon,
-      label: "Change Password",
-      path: "/instructor/change-password",
-    },
+
     {
       icon: MessageCircle,
-      label: "Review/Feedback",
-      path: "/instructor/feedback-form",
+      label: "AI Review/Feedback",
+      path: "/pages/admin/view-aibased-review-results",
     },
   ];
 

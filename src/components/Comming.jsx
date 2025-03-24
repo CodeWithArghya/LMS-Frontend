@@ -4,7 +4,7 @@ const Coming = () => {
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
-    const countDownDate = new Date("Mar 30, 2025 10:00:00").getTime();
+    const countDownDate = new Date("May 10, 2025 11:00:00").getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -21,7 +21,8 @@ const Coming = () => {
       if (distance > 0) {
         setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
       } else {
-        setTimeLeft("SITE IS READY ");
+        setTimeLeft("MAINTAINANCE OVER ");
+
         clearInterval(interval);
       }
     }, 1000);
