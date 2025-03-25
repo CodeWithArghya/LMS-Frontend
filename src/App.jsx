@@ -32,6 +32,8 @@ import StudentReviewForm from "./components/courses/StudentReview";
 import TeacherReviewForm from "./pages/instructor/InstructorReview";
 import AdminLogin from "./pages/AdminSignin";
 import AdminDash from "./pages/AdminDashboard";
+import StudentView from "./components/dashboard/admin/StudentList";
+import InstrcutorView from "./components/dashboard/admin/InstructorList";
 export default function App() {
   return (
     <Router>
@@ -49,6 +51,11 @@ export default function App() {
           <Route path="/student/courses" element={<CoursesPage />} />
           <Route path="/instructor/courses" element={<MyCoursesPage />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/pages/admin/view-students" element={<StudentView />} />
+          <Route
+            path="/pages/admin/view-instructors"
+            element={<InstrcutorView />}
+          />
           <Route
             path="/student/student-dashboard"
             element={<StudentDashboard />}
