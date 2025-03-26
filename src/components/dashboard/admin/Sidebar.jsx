@@ -14,11 +14,15 @@ import {
   PenIcon,
   User2Icon,
   UserCircle,
+  MoveRight,
+  BookCheck,
+  CrossIcon,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Added missing import
 import Cookies from "js-cookie";
+import { FcAcceptDatabase } from "react-icons/fc";
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,12 +77,22 @@ export default function Sidebar() {
     {
       icon: Home,
       label: "Dashboard",
-      path: "",
+      path: "/pages/admin/admin-dashboard",
     },
     {
       icon: PenIcon,
       label: "Manage Courses ",
       path: "/pages/admin/manage-courses",
+    },
+    {
+      icon: BookCheck,
+      label: "Approved Course ",
+      path: "/pages/admin/approved-course-list",
+    },
+    {
+      icon: CrossIcon,
+      label: "Rejected Course ",
+      path: "/pages/admin/rejected-course-list",
     },
 
     {

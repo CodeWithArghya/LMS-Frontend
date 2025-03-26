@@ -34,6 +34,7 @@ import AdminLogin from "./pages/AdminSignin";
 import AdminDash from "./pages/AdminDashboard";
 import StudentView from "./components/dashboard/admin/StudentList";
 import InstrcutorView from "./components/dashboard/admin/InstructorList";
+import CoursesPageAdmin from "./components/dashboard/admin/CoursesPage";
 export default function App() {
   return (
     <Router>
@@ -44,6 +45,10 @@ export default function App() {
           <Route path="/pages/admin/admin-dashboard" element={<AdminDash />} />
           <Route path="/student/signin" element={<StudentSignIn />} />
           <Route path="/pages/admin/admin-login" element={<AdminLogin />} />
+          <Route
+            path="/pages/admin/manage-courses"
+            element={<CoursesPageAdmin />}
+          />
           <Route path="/instructor/signin" element={<InstructorSignIn />} />
           <Route path="/student/signup" element={<StudentSignUp />} />
           <Route path="/instructor/signup" element={<InstructorSignUp />} />
