@@ -17,6 +17,7 @@ import {
   MoveRight,
   BookCheck,
   CrossIcon,
+  ContactIcon,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -86,12 +87,12 @@ export default function Sidebar() {
     },
     {
       icon: BookCheck,
-      label: "Approved Course ",
+      label: "Approved Courses List ",
       path: "/pages/admin/approved-course-list",
     },
     {
       icon: CrossIcon,
-      label: "Rejected Course ",
+      label: "Rejected Courses List ",
       path: "/pages/admin/rejected-course-list",
     },
 
@@ -104,6 +105,11 @@ export default function Sidebar() {
       icon: UserCircle,
       label: "View Instructors",
       path: "/pages/admin/view-instructors",
+    },
+    {
+      icon: ContactIcon,
+      label: "View Contact/Query",
+      path: "/pages/admin/view-query-messages",
     },
 
     {

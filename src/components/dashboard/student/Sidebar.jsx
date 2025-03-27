@@ -7,6 +7,7 @@ import {
   Menu,
   KeyRound,
   X,
+  MessageCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -79,6 +80,11 @@ export default function Sidebar() {
       icon: CheckSquare,
       label: "Assessments",
       path: "/student/view-assessments",
+    },
+    {
+      icon: MessageCircle,
+      label: "Review/Feedback",
+      path: "/default/user/common-feedback-form",
     },
   ];
 

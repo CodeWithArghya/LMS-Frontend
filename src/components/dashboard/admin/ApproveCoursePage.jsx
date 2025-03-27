@@ -1,6 +1,7 @@
 import DashboardNavbar from "../DashboardNavbar";
 import Sidebar from "./Sidebar";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -22,7 +23,7 @@ function CourseCard({
   coursecontent,
   courseassessment,
   uploaded_by,
-  handleApprove,
+
   handleReject,
 }) {
   return (
@@ -71,11 +72,8 @@ function CourseCard({
           </span>
         </div>
         <div className="flex justify-between items-center text-sm p-2">
-          <span className="bg-green-600 text-white px-3 py-1 rounded-bl">
-            <button onClick={() => handleApprove(id)}>Approve</button>
-          </span>
           <span className="bg-red-600 text-white px-3 py-1 rounded-bl">
-            <button onClick={() => handleReject(id)}>Reject</button>
+            <button onClick={() => handleReject(id)}>Reject Course</button>
           </span>
         </div>
       </div>
@@ -83,7 +81,7 @@ function CourseCard({
   );
 }
 
-export default function CoursesPageAdmin() {
+export default function ApproveCoursesPageAdmin() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -134,7 +132,7 @@ export default function CoursesPageAdmin() {
 
         const token = JSON.parse(authData).access_token;
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/admin/display-pending-courses/${username}/`,
+          `http://127.0.0.1:8000/api/admin/display-approved-courses/${username}/`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -150,43 +148,6 @@ export default function CoursesPageAdmin() {
 
     fetchCourses();
   }, [username]);
-
-  const handleApprove = async (id) => {
-    const authData = localStorage.getItem("auth");
-    if (!authData) {
-      alert("Unauthorized! Please log in again.");
-      return;
-    }
-
-    let token;
-    try {
-      token = JSON.parse(authData).access_token;
-    } catch (error) {
-      console.error("Error parsing auth data:", error);
-      return;
-    }
-
-    try {
-      await axios.patch(
-        `http://127.0.0.1:8000/api/admin/approve-course/${username}/${id}/`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      alert("Course Approved Successfully!");
-      window.location.reload();
-      setCourses((prevCourses) =>
-        prevCourses.map((course) =>
-          course.id === id ? { ...course, current_status: "Approved" } : course
-        )
-      );
-    } catch (error) {
-      console.error("Error approving course:", error);
-      alert("Failed to approve course.");
-    }
-  };
 
   const handleReject = async (id) => {
     const authData = localStorage.getItem("auth");
@@ -233,7 +194,7 @@ export default function CoursesPageAdmin() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <p className="text-white">Loading courses...</p>
+        <p className="text-white">Loading approved courses...</p>
       </div>
     );
   }
@@ -263,11 +224,11 @@ export default function CoursesPageAdmin() {
         <main className="flex-1 p-6 md:p-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">
-              Uploaded Courses :: Pending
+              Approved Courses Lists
             </h1>
             <p className="text-gray-400">
-              Verify Course & Details before Approve/Reject (** Only Approved
-              Courses will be displayed to Student Portal)
+              Verify Course & Details before Reject (** Only Approved Courses
+              will be displayed to Student Portal)
             </p>
           </div>
 
@@ -289,12 +250,11 @@ export default function CoursesPageAdmin() {
                 <CourseCard
                   key={course.id}
                   {...course}
-                  handleApprove={handleApprove}
                   handleReject={handleReject}
                 />
               ))
             ) : (
-              <p className="text-white">No courses found.</p>
+              <p className="text-white">No approved courses found.</p>
             )}
           </div>
         </main>

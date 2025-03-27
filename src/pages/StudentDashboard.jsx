@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Award } from "lucide-react";
 import Sidebar from "../components/dashboard/student/Sidebar";
 import StatCard from "../components/dashboard/student/StatCard";
-import CourseCard from "../components/dashboard/student/CourseCard";
+
 import DashboardNavbar from "../components/dashboard/DashboardNavbar";
+import LiveClassDisplayCard from "../components/dashboard/student/CourseCard";
 
 export default function StudentDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -24,12 +25,6 @@ export default function StudentDashboard() {
   ];
 
   const rewards = [1, 2, 3, 4, 5];
-
-  const courses = [
-    { title: "Basics of HTML", progress: 75 },
-    { title: "Angular in steps", progress: 45 },
-    { title: "Bootstrap Foundation", progress: 30 },
-  ];
 
   return (
     <div className="min-h-screen bg-background-primary flex flex-col">
@@ -67,15 +62,15 @@ export default function StudentDashboard() {
           {/* Courses Section */}
           <div className="bg-background-secondary p-4 md:p-6 rounded-lg">
             <div className="flex justify-between items-center mb-4 md:mb-6">
-              <h3 className="text-white text-lg md:text-xl">COURSES</h3>
-              <button className="text-violet-400 hover:text-violet-300 text-sm md:text-base">
-                VIEW ALL
-              </button>
+              <h3 className="text-white text-lg md:text-xl">
+                SCHEDULED LIVE CLASSESS{" "}
+                <span className="text-3xl text-red-500">
+                  (** All Classes will be held between 10 AM to 4PM)
+                </span>
+              </h3>
             </div>
             <div className="space-y-3 md:space-y-4">
-              {courses.map((course, index) => (
-                <CourseCard key={index} {...course} />
-              ))}
+              <LiveClassDisplayCard />
             </div>
           </div>
         </div>

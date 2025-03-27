@@ -35,6 +35,10 @@ import AdminDash from "./pages/AdminDashboard";
 import StudentView from "./components/dashboard/admin/StudentList";
 import InstrcutorView from "./components/dashboard/admin/InstructorList";
 import CoursesPageAdmin from "./components/dashboard/admin/CoursesPage";
+import ApproveCoursesPageAdmin from "./components/dashboard/admin/ApproveCoursePage";
+import RejectCoursesPageAdmin from "./components/dashboard/admin/RejectedCoursePage";
+import CommonContactForm from "./pages/Contactform";
+import ContactQueryMessage from "./components/dashboard/admin/ContactQuery";
 export default function App() {
   return (
     <Router>
@@ -49,6 +53,14 @@ export default function App() {
             path="/pages/admin/manage-courses"
             element={<CoursesPageAdmin />}
           />
+          <Route
+            path="/pages/admin/approved-course-list"
+            element={<ApproveCoursesPageAdmin />}
+          />
+          <Route
+            path="/pages/admin/rejected-course-list"
+            element={<RejectCoursesPageAdmin />}
+          />
           <Route path="/instructor/signin" element={<InstructorSignIn />} />
           <Route path="/student/signup" element={<StudentSignUp />} />
           <Route path="/instructor/signup" element={<InstructorSignUp />} />
@@ -60,6 +72,10 @@ export default function App() {
           <Route
             path="/pages/admin/view-instructors"
             element={<InstrcutorView />}
+          />
+          <Route
+            path="/pages/admin/view-query-messages"
+            element={<ContactQueryMessage />}
           />
           <Route
             path="/student/student-dashboard"
@@ -106,6 +122,7 @@ export default function App() {
             path="/default/user/common-feedback-form"
             element={<StudentReviewForm />}
           />
+          <Route path="/contact" element={<CommonContactForm />} />
           <Route
             path="/instructor/feedback-form"
             element={<TeacherReviewForm />}

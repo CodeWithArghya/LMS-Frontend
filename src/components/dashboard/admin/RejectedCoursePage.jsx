@@ -23,7 +23,6 @@ function CourseCard({
   courseassessment,
   uploaded_by,
   handleApprove,
-  handleReject,
 }) {
   return (
     <div className="bg-gray-800 rounded-lg overflow-hidden transition-transform hover:scale-105">
@@ -72,10 +71,7 @@ function CourseCard({
         </div>
         <div className="flex justify-between items-center text-sm p-2">
           <span className="bg-green-600 text-white px-3 py-1 rounded-bl">
-            <button onClick={() => handleApprove(id)}>Approve</button>
-          </span>
-          <span className="bg-red-600 text-white px-3 py-1 rounded-bl">
-            <button onClick={() => handleReject(id)}>Reject</button>
+            <button onClick={() => handleApprove(id)}>Approve Course</button>
           </span>
         </div>
       </div>
@@ -83,7 +79,7 @@ function CourseCard({
   );
 }
 
-export default function CoursesPageAdmin() {
+export default function RejectCoursesPageAdmin() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -134,7 +130,7 @@ export default function CoursesPageAdmin() {
 
         const token = JSON.parse(authData).access_token;
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/admin/display-pending-courses/${username}/`,
+          `http://127.0.0.1:8000/api/admin/display-rejected-courses/${username}/`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -188,52 +184,10 @@ export default function CoursesPageAdmin() {
     }
   };
 
-  const handleReject = async (id) => {
-    const authData = localStorage.getItem("auth");
-    if (!authData) {
-      alert("Unauthorized! Please log in again.");
-      return;
-    }
-
-    let token;
-    try {
-      token = JSON.parse(authData).access_token;
-    } catch (error) {
-      console.error("Error parsing auth data:", error);
-      return;
-    }
-
-    try {
-      await axios.patch(
-        `http://127.0.0.1:8000/api/admin/reject-course/${username}/${id}/`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      alert("Course Rejected Successfully!");
-      window.location.reload();
-      setCourses((prevCourses) =>
-        prevCourses.map((course) =>
-          course.id === id
-            ? {
-                ...course,
-                current_status: "Rejected",
-              }
-            : course
-        )
-      );
-    } catch (error) {
-      console.error("Error approving course:", error);
-      alert("Failed to Reject course.");
-    }
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <p className="text-white">Loading courses...</p>
+        <p className="text-white">Loading rejected courses...</p>
       </div>
     );
   }
@@ -263,11 +217,11 @@ export default function CoursesPageAdmin() {
         <main className="flex-1 p-6 md:p-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">
-              Uploaded Courses :: Pending
+              Rejected Courses Lists
             </h1>
             <p className="text-gray-400">
-              Verify Course & Details before Approve/Reject (** Only Approved
-              Courses will be displayed to Student Portal)
+              Verify Course & Details before Approve (** Only Approved Courses
+              will be displayed to Student Portal)
             </p>
           </div>
 
@@ -290,11 +244,10 @@ export default function CoursesPageAdmin() {
                   key={course.id}
                   {...course}
                   handleApprove={handleApprove}
-                  handleReject={handleReject}
                 />
               ))
             ) : (
-              <p className="text-white">No courses found.</p>
+              <p className="text-white">No rejected courses found.</p>
             )}
           </div>
         </main>

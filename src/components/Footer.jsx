@@ -36,10 +36,10 @@ export default function Footer() {
             <ul className="space-y-2 text-sm md:text-base">
               <li>
                 <Link
-                  to="/courses"
+                  to="/pages/admin/admin-login"
                   className="hover:text-purple-400 transition-colors"
                 >
-                  Courses
+                  Admin Login
                 </Link>
               </li>
               <li>

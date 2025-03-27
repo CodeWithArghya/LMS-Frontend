@@ -86,7 +86,7 @@ export default function LiveClassForm() {
       );
 
       alert("Live Class Sechudled Successfully!");
-      navigate("/instructor/my-classes");
+      navigate("/instructor/instructor-dashboard");
     } catch (error) {
       console.error("Error creating course:", error.response?.data || error);
     } finally {
