@@ -11,7 +11,7 @@ import StudentSignUp from "./pages/StudentSignUp";
 import InstructorSignUp from "./pages/InstructorSignUp";
 import OtpUser from "./pages/OtpUser";
 import Success from "./pages/Success";
-import MaintainancePage from "./pages/Maintainance";
+
 import StudentDashboard from "./pages/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import CreateCourseForm from "./components/courses/CreateCourseForm";
@@ -39,6 +39,7 @@ import ApproveCoursesPageAdmin from "./components/dashboard/admin/ApproveCourseP
 import RejectCoursesPageAdmin from "./components/dashboard/admin/RejectedCoursePage";
 import CommonContactForm from "./pages/Contactform";
 import ContactQueryMessage from "./components/dashboard/admin/ContactQuery";
+import NotFound from "./pages/PageNotFoundPage";
 export default function App() {
   return (
     <Router>
@@ -158,7 +159,7 @@ export default function App() {
             element={<AssessmentDisplayPage />}
           />
           {/**maintainance */}
-          <Route path="*" element={<MaintainancePage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>
