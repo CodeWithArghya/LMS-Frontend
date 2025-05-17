@@ -11,7 +11,6 @@ import StudentSignUp from "./pages/StudentSignUp";
 import InstructorSignUp from "./pages/InstructorSignUp";
 import OtpUser from "./pages/OtpUser";
 import Success from "./pages/Success";
-
 import StudentDashboard from "./pages/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import CreateCourseForm from "./components/courses/CreateCourseForm";
@@ -40,6 +39,7 @@ import RejectCoursesPageAdmin from "./components/dashboard/admin/RejectedCourseP
 import CommonContactForm from "./pages/Contactform";
 import ContactQueryMessage from "./components/dashboard/admin/ContactQuery";
 import NotFound from "./pages/PageNotFoundPage";
+import SentimentPieChart from "./components/dashboard/admin/AIReview";
 export default function App() {
   return (
     <Router>
@@ -73,6 +73,10 @@ export default function App() {
           <Route
             path="/pages/admin/view-instructors"
             element={<InstrcutorView />}
+          />
+          <Route
+            path="/pages/admin/view-aibased-review-results"
+            element={<SentimentPieChart />}
           />
           <Route
             path="/pages/admin/view-query-messages"
