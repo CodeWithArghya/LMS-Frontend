@@ -10,18 +10,74 @@ import LiveClassDisplayCard from "../components/dashboard/student/CourseCard";
 export default function StudentDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const navigate = useNavigate();
+  const [currentDate, setCurrentDate] = useState(new Date());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000); // Update every second
 
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
   useEffect(() => {
     const token = localStorage.getItem("auth");
     if (!token) {
       navigate("/student/signin"); // Redirect to login if token is missing
     }
   }, []);
+  const [approvedCourse, setApprovedCourse] = useState(0);
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/displaycount/`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch details");
+        }
+
+        const result = await response.json();
+
+        if (result.result) {
+          setApprovedCourse(result.result.approved_count);
+        } else {
+          throw new Error("No data found");
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchCourseDetails();
+  }, []);
+
+  const [assessment, setAssessment] = useState(0);
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/displayassessmentcount/`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch details");
+        }
+
+        const result = await response.json();
+
+        if (result) {
+          setAssessment(result.assessment);
+        } else {
+          throw new Error("No data found");
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchCourseDetails();
+  }, []);
 
   const stats = [
-    { icon: Award, value: "29", label: "COURSES TO DO" },
-    { icon: Award, value: "6", label: "OVERDUE COURSES" },
-    { icon: Award, value: "1", label: "COMPLETED COURSES" },
+    { icon: Award, value: approvedCourse, label: "TOTAL COURSES" },
+    { icon: Award, value: assessment, label: "TOTAL ASSESSMENTS" },
+    { icon: Award, value: "", label: "Comming Soon.." },
   ];
 
   const rewards = [1, 2, 3, 4, 5];
@@ -41,21 +97,30 @@ export default function StudentDashboard() {
 
           {/* Rewards Section */}
           <div className="bg-background-secondary p-4 md:p-6 rounded-lg mb-6 md:mb-8">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-white text-lg md:text-xl">REWARDS</h3>
-              <button className="text-violet-400 hover:text-violet-300 text-sm md:text-base">
-                VIEW ALL
-              </button>
-            </div>
-            <div className="flex space-x-3 md:space-x-4 overflow-x-auto pb-2">
-              {rewards.map((_, index) => (
-                <div
-                  key={index}
-                  className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full bg-violet-700 flex items-center justify-center"
-                >
-                  <Award className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                </div>
-              ))}
+            <div>
+              <p className="text-yellow-500  text-2xl">
+                <p className="text-yellow-500 text-2xl">
+                  <p className="text-yellow-500 text-2xl">
+                    {`${currentDate.getDate().toString().padStart(2, "0")}-${(
+                      currentDate.getMonth() + 1
+                    )
+                      .toString()
+                      .padStart(
+                        2,
+                        "0"
+                      )}-${currentDate.getFullYear()} ${currentDate
+                      .getHours()
+                      .toString()
+                      .padStart(2, "0")}:${currentDate
+                      .getMinutes()
+                      .toString()
+                      .padStart(2, "0")}:${currentDate
+                      .getSeconds()
+                      .toString()
+                      .padStart(2, "0")}`}
+                  </p>
+                </p>
+              </p>
             </div>
           </div>
 

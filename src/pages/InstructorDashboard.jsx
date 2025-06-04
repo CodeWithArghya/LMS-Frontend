@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BookOpen, Video } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/dashboard/instructor/Sidebar";
@@ -32,6 +32,14 @@ export default function InstructorDashboard() {
       onClick: () => window.open("https://meet.google.com/landing", "_blank"),
     },
   ];
+  const [currentDate, setCurrentDate] = useState(new Date());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   return (
     <div className="min-h-screen bg-background-primary flex flex-col">
@@ -44,8 +52,30 @@ export default function InstructorDashboard() {
               <h1 className="text-xl md:text-2xl font-bold text-white mb-2">
                 Dashboard
               </h1>
-              <p className="text-violet-200 text-sm md:text-base">
-                Control Panel
+            </div>
+            <div>
+              <p className="text-yellow-500  text-2xl">
+                <p className="text-yellow-500 text-2xl">
+                  <p className="text-yellow-500 text-2xl">
+                    {`${currentDate.getDate().toString().padStart(2, "0")}-${(
+                      currentDate.getMonth() + 1
+                    )
+                      .toString()
+                      .padStart(
+                        2,
+                        "0"
+                      )}-${currentDate.getFullYear()} ${currentDate
+                      .getHours()
+                      .toString()
+                      .padStart(2, "0")}:${currentDate
+                      .getMinutes()
+                      .toString()
+                      .padStart(2, "0")}:${currentDate
+                      .getSeconds()
+                      .toString()
+                      .padStart(2, "0")}`}
+                  </p>
+                </p>
               </p>
             </div>
 
