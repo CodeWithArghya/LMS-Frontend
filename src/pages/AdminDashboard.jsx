@@ -25,7 +25,32 @@ export default function AdminDash() {
   const [error, setError] = useState(null);
   const [rejectedCourse, setRejectedCourse] = useState(0);
   const [approvedCourse, setApprovedCourse] = useState(0);
-  const [messageCount, setMessageCount] = useState(0);
+  const [reviewCount, setReviewCount] = useState(0);
+
+  useEffect(() => {
+    const fetchReviewDetails = async () => {
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/displayuserreviewcount/`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch details");
+        }
+
+        const result = await response.json();
+
+        if (result.review) {
+          setReviewCount(result.review); //
+        } else {
+          throw new Error("No data found");
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchReviewDetails();
+  }, []);
 
   useEffect(() => {
     const fetchStudentDetails = async () => {
@@ -111,7 +136,8 @@ export default function AdminDash() {
     },
     {
       icon: MessageCircle,
-      title: "Comming Soon...",
+      title: "Total Reviews",
+      result: reviewCount,
 
       color: "blue",
     },

@@ -107,6 +107,11 @@ export default function Sidebar() {
       path: "/pages/admin/view-instructors",
     },
     {
+      icon: MessageCircle,
+      label: "View User Review",
+      path: "/pages/admin/view-feedback-messages",
+    },
+    {
       icon: ContactIcon,
       label: "View Contact/Query",
       path: "/pages/admin/view-query-messages",

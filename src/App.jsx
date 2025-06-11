@@ -38,6 +38,7 @@ import ApproveCoursesPageAdmin from "./components/dashboard/admin/ApproveCourseP
 import RejectCoursesPageAdmin from "./components/dashboard/admin/RejectedCoursePage";
 import CommonContactForm from "./pages/Contactform";
 import ContactQueryMessage from "./components/dashboard/admin/ContactQuery";
+import FeedbackDisplay from "./components/dashboard/admin/FeedbackMessageView";
 import NotFound from "./pages/PageNotFoundPage";
 import SentimentPieChart from "./components/dashboard/admin/AIReview";
 export default function App() {
@@ -81,6 +82,10 @@ export default function App() {
           <Route
             path="/pages/admin/view-query-messages"
             element={<ContactQueryMessage />}
+          />
+          <Route
+            path="/pages/admin/view-feedback-messages"
+            element={<FeedbackDisplay />}
           />
           <Route
             path="/student/student-dashboard"
