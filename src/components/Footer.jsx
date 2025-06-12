@@ -44,10 +44,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/about"
-                  className="hover:text-purple-400 transition-colors"
+                  to="/default/user/common-feedback-form"
+                  className="text-white hover:text-purple-200 transition-colors"
                 >
-                  About Us
+                  Review & Feedback
                 </Link>
               </li>
               <li>
@@ -89,16 +89,17 @@ export default function Footer() {
               Contact Us
             </h3>
             <p className="text-sm md:text-base mb-2">
-              Email: eduhublmsofficials@gmail.com
+              Email: learnwithfun@gmail.com
             </p>
-            <p className="text-sm md:text-base">Phone: (+91) 6295717932 </p>
+            <p className="text-sm md:text-base">Phone: (+91) 123456789 </p>
           </div>
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm md:text-base">
           <p>
             &copy; {new Date().getFullYear()} Learn With Fun. All rights
-            reserved.
+            reserved. Site is Designed & Developed by- Project Team-1 CSE 4th
+            Year, MIT
           </p>
         </div>
       </div>

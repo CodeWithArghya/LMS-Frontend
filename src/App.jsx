@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+
 import GetStarted from "./pages/GetStarted";
 import StudentSignIn from "./pages/StudentSignIn";
 import StudentPasswordReset from "./pages/StudentPassword";

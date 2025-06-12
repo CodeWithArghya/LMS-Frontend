@@ -21,7 +21,7 @@ export default function StudentSignIn() {
     try {
       // Make API call
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/student/login/",
+        "http://15.207.247.182:8000/auth/student/login/",
         data,
         {
           headers: {

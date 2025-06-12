@@ -28,7 +28,9 @@ export default function StudentDashboard() {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/displaycount/`);
+        const response = await fetch(
+          `http://15.207.247.182:8000/api/displaycount/`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch details");
         }
@@ -53,7 +55,7 @@ export default function StudentDashboard() {
     const fetchCourseDetails = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/displayassessmentcount/`
+          `http://15.207.247.182:8000/api/displayassessmentcount/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch details");

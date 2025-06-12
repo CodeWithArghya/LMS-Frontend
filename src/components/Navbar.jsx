@@ -43,24 +43,6 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-white hover:text-purple-200 transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("goals")}
-              className="text-white hover:text-purple-200 transition-colors"
-            >
-              Goals
-            </button>
-            <Link
-              to="/default/user/common-feedback-form"
-              className="text-white hover:text-purple-200 transition-colors"
-            >
-              Feedback
-            </Link>
             <Link
               to="/get-started"
               className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg transition-colors"
