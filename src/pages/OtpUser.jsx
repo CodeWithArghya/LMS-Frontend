@@ -21,12 +21,16 @@ export default function OtpUser() {
     };
 
     try {
-      // Make API call
-      await axios.post("http://127.0.0.1:8000/auth/student/verify-otp/", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      // Make API call ok nice
+      await axios.post(
+        "http://15.207.247.182:8000/auth/student/verify-otp/",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       toast.success("OTP Verified Successfully");
       navigate("/success");
