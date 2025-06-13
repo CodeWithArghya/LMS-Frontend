@@ -107,7 +107,7 @@ export default function RejectCoursesPageAdmin() {
     }
 
     axios
-      .get("http://13.204.77.147:8000/auth/admin/profile/", {
+      .get("http://127.0.0.1:8000/auth/admin/profile/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -130,7 +130,7 @@ export default function RejectCoursesPageAdmin() {
 
         const token = JSON.parse(authData).access_token;
         const response = await axios.get(
-          `http://13.204.77.147:8000/api/admin/display-rejected-courses/${username}/`,
+          `http://127.0.0.1:8000/api/admin/display-rejected-courses/${username}/`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -164,7 +164,7 @@ export default function RejectCoursesPageAdmin() {
 
     try {
       await axios.patch(
-        `http://13.204.77.147:8000/api/admin/approve-course/${username}/${id}/`,
+        `http://127.0.0.1:8000/api/admin/approve-course/${username}/${id}/`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

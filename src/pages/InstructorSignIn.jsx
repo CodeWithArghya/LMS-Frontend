@@ -21,7 +21,7 @@ export default function InstructorSignIn() {
     try {
       // Make API call
       const response = await axios.post(
-        "http://13.204.77.147:8000/auth/instructor/login/",
+        "http://127.0.0.1:8000/auth/instructor/login/",
         data,
         {
           headers: {

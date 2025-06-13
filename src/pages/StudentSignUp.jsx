@@ -33,15 +33,11 @@ export default function StudentSignUp() {
 
     try {
       // Make API call
-      await axios.post(
-        "http://13.204.77.147:8000/auth/student/register/",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      await axios.post("http://127.0.0.1:8000/auth/student/register/", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       toast.success("User Registered Successfully. Now Verify Your Account");
       navigate(`/otp-verify?email=${email}`);

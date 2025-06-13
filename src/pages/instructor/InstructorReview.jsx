@@ -42,7 +42,7 @@ export default function TeacherReviewForm() {
 
     try {
       await axios.post(
-        "http://13.204.77.147:8000/api/instructor/submit-feedback/",
+        "http://127.0.0.1:8000/api/instructor/submit-feedback/",
         formDataToSend,
         {
           headers: {

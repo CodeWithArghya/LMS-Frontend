@@ -13,7 +13,7 @@ const ImageSlider = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://13.204.77.147:8000/api/student/displaylwfassessment/"
+          "http://127.0.0.1:8000/api/student/displaylwfassessment/"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");

@@ -64,7 +64,7 @@ export default function Home() {
     const fetchDynamicdata = async () => {
       try {
         const response = await axios.get(
-          "http://13.204.77.147:8000/api/home/dynamicdisplay/"
+          "http://127.0.0.1:8000/api/home/dynamicdisplay/"
         );
         setTotalCourses(response.data.totalcourses);
         setTotalStudents(response.data.totalstudents);

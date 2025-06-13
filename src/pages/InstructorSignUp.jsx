@@ -32,15 +32,11 @@ export default function InstructorSignUp() {
     };
     try {
       // Make API call
-      await axios.post(
-        "http://13.204.77.147:8000/auth/instructor/signup/",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      await axios.post("http://127.0.0.1:8000/auth/instructor/signup/", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       toast.success(
         "Instructor Registered Successfully. Now Verify Your Account"

@@ -32,7 +32,7 @@ export default function MyAssessmentALL() {
         }
 
         const response = await axios.get(
-          "http://13.204.77.147:8000/auth/instructor/profile/",
+          "http://127.0.0.1:8000/auth/instructor/profile/",
           {
             headers: {
               Authorization: `Bearer ${access_token}`,
@@ -64,7 +64,7 @@ export default function MyAssessmentALL() {
 
     try {
       const response = await axios.get(
-        `http://13.204.77.147:8000/api/instructor/specificassessment/${username}`,
+        `http://127.0.0.1:8000/api/instructor/specificassessment/${username}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

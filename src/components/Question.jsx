@@ -27,7 +27,7 @@ function Question() {
     setError(null);
 
     try {
-      const response = await fetch("http://13.204.77.147:8000/api/object/", {
+      const response = await fetch("http://127.0.0.1:8000/api/object/", {
         method: "POST",
         body: formData,
       });
