@@ -38,7 +38,7 @@ export default function StudentReviewForm() {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/student/feedback-submission/",
+        "http://15.207.247.182:8000/api/student/feedback-submission/",
         formDataToSend,
         {
           headers: {
