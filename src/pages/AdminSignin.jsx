@@ -21,7 +21,7 @@ export default function AdminLogin() {
     try {
       // Make API call
       const response = await axios.post(
-        "http://13.204.77.147:8000/auth/admin/login/",
+        "https://13.204.77.147:8000/auth/admin/login/",
         data,
         {
           headers: {
