@@ -40,7 +40,7 @@ export default function CommonContactForm() {
 
     try {
       await axios.post(
-        "http://15.207.247.182:8000/api/general/contactform-submission/",
+        "http://13.204.77.147:8000/api/general/contactform-submission/",
         formDataToSend,
         {
           headers: {

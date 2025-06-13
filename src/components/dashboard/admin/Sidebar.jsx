@@ -49,7 +49,7 @@ export default function Sidebar() {
         }
 
         const response = await axios.get(
-          "http://127.0.0.1:8000/auth/admin/profile/",
+          "http://13.204.77.147:8000/auth/admin/profile/",
           {
             headers: {
               Authorization: `Bearer ${access_token}`,

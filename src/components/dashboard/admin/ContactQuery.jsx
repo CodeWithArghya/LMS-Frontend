@@ -29,7 +29,7 @@ const ContactQueryMessage = () => {
     const fetchQueries = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/admin/display-contact-query/",
+          "http://13.204.77.147:8000/api/admin/display-contact-query/",
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -62,7 +62,7 @@ const ContactQueryMessage = () => {
 
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/admin/delete-query/${id}/`,
+        `http://13.204.77.147:8000/api/admin/delete-query/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

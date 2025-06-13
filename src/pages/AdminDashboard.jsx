@@ -31,7 +31,7 @@ export default function AdminDash() {
     const fetchReviewDetails = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/displayuserreviewcount/`
+          `http://13.204.77.147:8000/api/displayuserreviewcount/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch details");
@@ -56,7 +56,7 @@ export default function AdminDash() {
     const fetchStudentDetails = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/displayusercount/`
+          `http://13.204.77.147:8000/api/displayusercount/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch details");
@@ -81,7 +81,9 @@ export default function AdminDash() {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/displaycount/`);
+        const response = await fetch(
+          `http://13.204.77.147:8000/api/displaycount/`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch details");
         }
