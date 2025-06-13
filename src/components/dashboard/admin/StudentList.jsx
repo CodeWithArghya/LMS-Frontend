@@ -31,7 +31,7 @@ const StudentView = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://13.204.77.147:8000/api/admin/view-students/",
+          "http://127.0.0.1:8000/api/admin/view-students/",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -83,7 +83,7 @@ const StudentView = () => {
 
     try {
       const response = await axios.delete(
-        `http://13.204.77.147:8000/api/admin/delete-student/${id}/`,
+        `http://127.0.0.1:8000/api/admin/delete-student/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
