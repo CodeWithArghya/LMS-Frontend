@@ -26,6 +26,7 @@ import DrawingAndQuestionPage from "./components/DrawingAndQuestionPage";
 import AssessmentDisplayPage from "./pages/student/AssessmentDisplayPage";
 import AssignmentSubmission from "./pages/student/StudentAssessmentSubmission";
 import MyAssessmentALL from "./pages/instructor/AssessmentView";
+import BulkStudent from "./pages/Bulk";
 import InstructorAssessmentResultCard from "./pages/instructor/AssessmentResult";
 import StudentPasswordChange from "./pages/student/PasswordChangeS";
 import StudentReviewForm from "./components/courses/StudentReview";
@@ -109,6 +110,7 @@ export default function App() {
             path="/student/forgot-password"
             element={<StudentPasswordReset />}
           />
+          <Route path="/admin/bulk-user-upload" element={<BulkStudent />} />
           <Route
             path="/instructor/forgot-password"
             element={<InstructorPasswordReset />}

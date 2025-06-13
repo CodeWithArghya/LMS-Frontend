@@ -107,6 +107,11 @@ export default function Sidebar() {
       path: "/pages/admin/view-instructors",
     },
     {
+      icon: UserCircle,
+      label: "Import Bulk User",
+      path: "/admin/bulk-user-upload",
+    },
+    {
       icon: MessageCircle,
       label: "View User Review",
       path: "/pages/admin/view-feedback-messages",
