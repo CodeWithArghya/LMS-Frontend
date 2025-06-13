@@ -7,7 +7,7 @@ export default function LiveClassDisplayCard() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/student/displayclasses/")
+      .get("http://13.204.77.147:8000/api/student/displayclasses/")
       .then((response) => setClasses(response.data.classes))
       .catch((error) => console.error("Error fetching live classes:", error));
   }, []);

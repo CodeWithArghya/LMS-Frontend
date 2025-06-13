@@ -29,7 +29,7 @@ export default function StudentDashboard() {
     const fetchCourseDetails = async () => {
       try {
         const response = await fetch(
-          `http://15.207.247.182:8000/api/displaycount/`
+          `http://13.204.77.147:8000/api/displaycount/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch details");
@@ -55,7 +55,7 @@ export default function StudentDashboard() {
     const fetchCourseDetails = async () => {
       try {
         const response = await fetch(
-          `http://15.207.247.182:8000/api/displayassessmentcount/`
+          `http://13.204.77.147:8000/api/displayassessmentcount/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch details");

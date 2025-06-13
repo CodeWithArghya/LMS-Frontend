@@ -26,7 +26,7 @@ export default function NoticeBoard() {
       setToken(parsedAuth.access_token); // Save token for later use
 
       axios
-        .get("http://127.0.0.1:8000/auth/instructor/profile/", {
+        .get("http://13.204.77.147:8000/auth/instructor/profile/", {
           headers: { Authorization: `Bearer ${parsedAuth.access_token}` },
         })
         .then((response) => {
@@ -45,7 +45,7 @@ export default function NoticeBoard() {
 
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/instructor/class-delete/${username}/${id}/`,
+        `http://13.204.77.147:8000/api/instructor/class-delete/${username}/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Correctly passing token
@@ -71,7 +71,7 @@ export default function NoticeBoard() {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/specificclasses/${username}/`,
+          `http://13.204.77.147:8000/api/specificclasses/${username}/`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

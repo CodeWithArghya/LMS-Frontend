@@ -23,7 +23,7 @@ export default function OtpUser() {
     try {
       // Make API call ok nice
       await axios.post(
-        "http://15.207.247.182:8000/auth/student/verify-otp/",
+        "http://13.204.77.147:8000/auth/student/verify-otp/",
         data,
         {
           headers: {

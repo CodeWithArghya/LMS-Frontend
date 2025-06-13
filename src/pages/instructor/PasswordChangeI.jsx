@@ -39,7 +39,7 @@ export default function InstrucotrPasswordChange() {
     }
 
     axios
-      .get("http://127.0.0.1:8000/auth/instructor/profile/", {
+      .get("http://13.204.77.147:8000/auth/instructor/profile/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -79,7 +79,7 @@ export default function InstrucotrPasswordChange() {
       }
 
       const response = await axios.post(
-        `http://127.0.0.1:8000/auth/student/change-password/${username}/`,
+        `http://13.204.77.147:8000/auth/student/change-password/${username}/`,
         formDataToSend,
         {
           headers: {

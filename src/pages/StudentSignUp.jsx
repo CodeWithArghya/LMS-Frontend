@@ -34,7 +34,7 @@ export default function StudentSignUp() {
     try {
       // Make API call
       await axios.post(
-        "http://15.207.247.182:8000/auth/student/register/",
+        "http://13.204.77.147:8000/auth/student/register/",
         data,
         {
           headers: {

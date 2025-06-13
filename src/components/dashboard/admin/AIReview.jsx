@@ -15,7 +15,7 @@ const SentimentPieChart = () => {
     const fetchFeedback = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/aireview-analysis/" //fetch api from backend
+          "http://13.204.77.147:8000/api/aireview-analysis/" //fetch api from backend
         );
         const { keywords = [], summary = "" } = response.data;
 

@@ -28,7 +28,7 @@ const DrawingAndQuestionPage = () => {
         }
 
         const response = await axios.get(
-          "http://127.0.0.1:8000/auth/student/profile/",
+          "http://13.204.77.147:8000/auth/student/profile/",
           {
             headers: {
               Authorization: `Bearer ${access_token}`,
@@ -60,7 +60,7 @@ const DrawingAndQuestionPage = () => {
 
       try {
         await axios.post(
-          "http://127.0.0.1:8000/api/user-activity/",
+          "http://13.204.77.147:8000/api/user-activity/",
           {
             username: userData.username,
             email: userData.email,

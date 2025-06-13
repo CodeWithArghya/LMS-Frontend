@@ -48,7 +48,7 @@ export default function InstructorCourseEdit() {
     }
 
     axios
-      .get("http://127.0.0.1:8000/auth/instructor/profile/", {
+      .get("http://13.204.77.147:8000/auth/instructor/profile/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -62,7 +62,7 @@ export default function InstructorCourseEdit() {
 
     // Fetch Course Details
     axios
-      .get(`http://127.0.0.1:8000/api/inscoursedetails/${id}/`, {
+      .get(`http://13.204.77.147:8000/api/inscoursedetails/${id}/`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -125,7 +125,7 @@ export default function InstructorCourseEdit() {
       }
 
       await axios.put(
-        `http://127.0.0.1:8000/api/coursemodify/${uploadedBy}/${id}/`, // Use `username` from state
+        `http://13.204.77.147:8000/api/coursemodify/${uploadedBy}/${id}/`, // Use `username` from state
         formDataToSend,
         { headers: { Authorization: `Bearer ${token}` } }
       );

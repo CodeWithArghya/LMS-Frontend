@@ -29,7 +29,7 @@ export default function InstructorCourseCard({
       setToken(parsedAuth.access_token); // Save token for later use
 
       axios
-        .get("http://127.0.0.1:8000/auth/instructor/profile/", {
+        .get("http://13.204.77.147:8000/auth/instructor/profile/", {
           headers: { Authorization: `Bearer ${parsedAuth.access_token}` },
         })
         .then((response) => {
@@ -53,7 +53,7 @@ export default function InstructorCourseCard({
 
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/deletecourse/${username}/${id}/`,
+        `http://13.204.77.147:8000/api/deletecourse/${username}/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Correctly passing token

@@ -16,7 +16,7 @@ export default function useUserActivityNotification() {
     try {
       // Send the user activity notification with the access token
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/user-activity/",
+        "http://13.204.77.147:8000/api/user-activity/",
         {}, // Empty body
         {
           headers: {
@@ -43,7 +43,7 @@ export default function useUserActivityNotification() {
           }
 
           const refreshResponse = await axios.post(
-            "http://127.0.0.1:8000/api/token/refresh/",
+            "http://13.204.77.147:8000/api/token/refresh/",
             { refresh: refreshToken }
           );
 

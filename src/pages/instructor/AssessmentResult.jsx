@@ -32,7 +32,7 @@ export default function InstructorAssessmentResultCard() {
         }
 
         const response = await axios.get(
-          "http://127.0.0.1:8000/auth/instructor/profile/",
+          "http://13.204.77.147:8000/auth/instructor/profile/",
           {
             headers: {
               Authorization: `Bearer ${access_token}`,
@@ -64,7 +64,7 @@ export default function InstructorAssessmentResultCard() {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/instructor/view-submissions/`,
+        `http://13.204.77.147:8000/api/instructor/view-submissions/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

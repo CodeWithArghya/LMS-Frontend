@@ -49,7 +49,7 @@ export default function CreateCourseForm() {
     }
 
     axios
-      .get("http://127.0.0.1:8000/auth/instructor/profile/", {
+      .get("http://13.204.77.147:8000/auth/instructor/profile/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -96,7 +96,7 @@ export default function CreateCourseForm() {
       }
 
       await axios.post(
-        "http://127.0.0.1:8000/api/instructor/create-course/",
+        "http://13.204.77.147:8000/api/instructor/create-course/",
         formDataToSend,
         {
           headers: {

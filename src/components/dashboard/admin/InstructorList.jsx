@@ -31,7 +31,7 @@ const InstrcutorView = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/admin/view-instructors/",
+          "http://13.204.77.147:8000/api/admin/view-instructors/",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -83,7 +83,7 @@ const InstrcutorView = () => {
 
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/admin/delete-instructor/${id}/`,
+        `http://13.204.77.147:8000/api/admin/delete-instructor/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
