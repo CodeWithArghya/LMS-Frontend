@@ -83,6 +83,17 @@ const ContactQueryMessage = () => {
     }
   };
 
+  const handleReply = (email) => {
+    const subject = encodeURIComponent("Resolve to Query");
+    const body = encodeURIComponent(
+      "Dear User,\n\nGreetings from LearnWithFun"
+    );
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`,
+      "_blank"
+    );
+  };
+
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-3xl font-bold text-center text-violet-500 mb-6">
@@ -105,7 +116,8 @@ const ContactQueryMessage = () => {
                 <th className="py-3 px-4 text-left">Message</th>
                 <th className="py-3 px-4 text-left">Submitted Date</th>
                 <th className="py-3 px-4 text-left">Attachments</th>
-                <th className="py-3 px-4 text-left">Actions</th>
+                <th className="py-3 px-4 text-left">Action 1</th>
+                <th className="py-3 px-4 text-left">Action 2</th>
               </tr>
             </thead>
             <tbody>
@@ -133,6 +145,14 @@ const ContactQueryMessage = () => {
                     ) : (
                       "No Attachment"
                     )}
+                  </td>
+                  <td className="py-3 px-4">
+                    <button
+                      onClick={() => handleReply(query.email)}
+                      className="bg-red-600 hover:bg-red-700 text-white text-sm px-3 py-1 rounded-lg transition-all"
+                    >
+                      Reply
+                    </button>
                   </td>
                   <td className="py-3 px-4">
                     <button

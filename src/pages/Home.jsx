@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import TestimonialCard from "../components/Testimonials/TestimonialCard";
 import image1 from "../assets/image1.png";
 import image2 from "../assets/image2.png";
 import image3 from "../assets/image3.png";
@@ -11,8 +12,13 @@ import {
   FaChartLine,
   FaUserShield,
   FaUsers,
+  FaClock,
+  FaHeadset,
+  FaUser,
   FaChalkboardTeacher,
   FaBookOpen,
+  FaArrowLeft,
+  FaArrowRight,
 } from "react-icons/fa";
 
 export default function Home() {
@@ -52,13 +58,48 @@ export default function Home() {
       ),
       text: "Latest Technology E-Learning",
     },
+    {
+      id: 6,
+      icon: (
+        <FaUsers className="text-indigo-500 text-5xl md:text-6xl animate-pulse" />
+      ),
+      text: "User Friendly UI",
+    },
+    {
+      id: 7,
+      icon: (
+        <FaUserShield className="text-red-500 text-5xl md:text-6xl animate-bounce" />
+      ),
+      text: "Secure",
+    },
+    {
+      id: 8,
+      icon: (
+        <FaClock className="text-green-400 text-5xl md:text-6xl animate-spin" />
+      ),
+      text: "24/7 Availability",
+    },
+    {
+      id: 9,
+      icon: (
+        <FaHeadset className="text-orange-500 text-5xl md:text-6xl animate-pulse" />
+      ),
+      text: "Tech Support",
+    },
+    {
+      id: 10,
+      icon: (
+        <FaChalkboardTeacher className="text-teal-500 text-5xl md:text-6xl animate-bounce" />
+      ),
+      text: "Smart Assessment",
+    },
   ];
 
   const [totalCourses, setTotalCourses] = useState(0);
   const [totalStudents, setTotalStudents] = useState(0);
   const [totalIns, setTotalIns] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [courses, setCourses] = useState([]);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     const fetchDynamicdata = async () => {
@@ -69,15 +110,44 @@ export default function Home() {
         setTotalCourses(response.data.totalcourses);
         setTotalStudents(response.data.totalstudents);
         setTotalIns(response.data.totalins);
+      } catch {}
+    };
+
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/allcourses/"
+        );
+        const fetchedCourses = response.data.courses || [];
+        const formattedCourses = fetchedCourses.map((course) => ({
+          name: `Instructor : ${course.teacher_name}`,
+          role: `for class: ${course.for_class}`,
+          coursename: course.course_title,
+          subject: `Subject : ${course.subject_name}`,
+          outcomes: `Outcomes : ${course.course_outcomes}`,
+          image: course.coursethubmnail || "https://via.placeholder.com/170",
+        }));
+        setCourses(formattedCourses);
       } catch (err) {
-        setError("Failed to fetch dynamic data.");
-      } finally {
-        setLoading(false);
+        console.error("Error fetching courses", err);
       }
     };
 
     fetchDynamicdata();
+    fetchCourses();
   }, []);
+
+  const handleScroll = (direction) => {
+    const container = scrollRef.current;
+    const scrollAmount = 400;
+    if (direction === "left") {
+      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  const duplicatedCourses = [...courses, ...courses];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-pink-100 to-blue-100 font-baloo overflow-hidden relative">
@@ -90,7 +160,6 @@ export default function Home() {
         🎉 Learn With Fun 🎨
       </motion.h1>
 
-      {/* Floating Images */}
       <motion.img
         src={image3}
         className="absolute top-20 left-2 sm:left-10 w-24 sm:w-32 md:w-40 rounded-xl animate-floating"
@@ -108,7 +177,6 @@ export default function Home() {
         alt="Computer Learning"
       />
 
-      {/* Tagline */}
       <motion.p
         className="text-center text-xl sm:text-2xl md:text-3xl text-purple-700 font-fredoka mt-24 cursor-pointer"
         animate={{ opacity: [0, 1, 0.8, 1], scale: [1, 1.05, 1] }}
@@ -118,12 +186,10 @@ export default function Home() {
         🌟 Learning + Drawing + Technology = Super Fun 🌟
       </motion.p>
 
-      {/* Features Section */}
       <div className="py-16 px-4">
         <h3 className="text-center text-3xl sm:text-4xl font-bold text-blue-500 mb-10 drop-shadow-lg animate-pulse font-fredoka cursor-pointer">
           🚀 Explore Our Features 🚀
         </h3>
-
         <div className="flex flex-wrap justify-center gap-8 md:gap-16">
           {features.map((feature, index) => (
             <motion.div
@@ -152,7 +218,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Stats Section */}
       <div className="py-16 bg-gradient-to-br from-blue-100 to-pink-100 px-4">
         <h3 className="text-center text-3xl sm:text-4xl font-bold text-purple-600 mb-10 font-fredoka">
           Our Achievements
@@ -193,21 +258,38 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Video Section */}
-      <div className="py-20 bg-gradient-to-r from-pink-100 to-yellow-100">
-        <h3 className="text-center text-3xl font-bold text-green-600 mb-10 font-baloo">
-          Benefits of E-Learning for Kids
-        </h3>
-        <div className="flex justify-center">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/1SZle1skb84
-"
-            title="Kids Learning"
-            className="rounded-3xl shadow-2xl border-8 border-blue-400"
-            allowFullScreen
-          ></iframe>
+      {/* Recent Courses Section with Arrow Scroll */}
+      <div className="bg-gradient-to-r from-pink-100 to-yellow-100 py-20 relative">
+        <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-blue-400 to-pink-600 bg-clip-text text-transparent mb-16">
+          Our Recent Courses
+        </h2>
+
+        <button
+          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-xl z-10 hover:bg-yellow-300 transition"
+          onClick={() => handleScroll("left")}
+        >
+          <FaArrowLeft className="text-2xl text-pink-600" />
+        </button>
+
+        <button
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-xl z-10 hover:bg-yellow-300 transition"
+          onClick={() => handleScroll("right")}
+        >
+          <FaArrowRight className="text-2xl text-pink-600" />
+        </button>
+
+        <div className="relative overflow-hidden">
+          <div
+            ref={scrollRef}
+            className="flex space-x-8 overflow-x-scroll scrollbar-hide px-16"
+            style={{ scrollBehavior: "smooth" }}
+          >
+            {duplicatedCourses.map((course, index) => (
+              <div key={index} className="w-[280px] md:w-[400px] flex-shrink-0">
+                <TestimonialCard {...course} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
