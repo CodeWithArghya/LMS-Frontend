@@ -5,9 +5,7 @@ import not from "../assets/not.png"; // Adjust the path as necessary
 const NotFound = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center bg-gray-100">
-      <h1 className="text-6xl font-bold text-red-600 mb-4 hover:text-green-500">
-        Error :: 404
-      </h1>
+      <h1 className="text-6xl font-bold text-red-600 mb-4 hover:text-green-500"></h1>
       <div
         style={{
           width: "450px",

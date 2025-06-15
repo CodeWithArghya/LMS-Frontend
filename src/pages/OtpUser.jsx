@@ -66,7 +66,7 @@ export default function OtpUser() {
         name="otp"
         value={otp}
         onChange={(event) => setOtp(event.target.value)}
-        placeholder="Enter the otp received in email"
+        placeholder="Enter the otp received in email inbox/spambox"
       />
 
       <ToastContainer />

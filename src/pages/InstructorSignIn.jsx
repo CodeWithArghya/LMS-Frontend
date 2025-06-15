@@ -13,6 +13,13 @@ export default function InstructorSignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Frontend validation for username
+    if (!username.startsWith("INS")) {
+      toast.error("Username must start with 'INS'");
+      return; // Stop form submission
+    }
+
     const data = {
       username: username,
       password: password,

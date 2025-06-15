@@ -13,6 +13,11 @@ export default function StudentSignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // Frontend validation for username
+    if (!username.startsWith("STD")) {
+      toast.error("Username must start with 'STD'");
+      return; // Stop form submission
+    }
     const data = {
       username: username,
       password: password,
